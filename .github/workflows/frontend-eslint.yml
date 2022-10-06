@@ -1,0 +1,34 @@
+name: frontend eslint
+
+on:
+  pull_request:
+    paths:
+      - frontend/**
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: read .tool-versions
+        uses: marocchino/tool-versions-action@v1
+        id: tool_versions
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.tool_versions.outputs.nodejs }}
+          cache: npm
+
+      - name: install npm packages
+        run: npm ci
+
+      - name: reviewdog
+        uses: reviewdog/action-eslint@v1
+        with:
+          workdir: frontend/
+          reporter: github-pr-review
+          fail_on_error: true

@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "tempaku-neverland-website",
+  "version": "0.0.1",
+  "description": "Tempaku Neverland's official website",
+  "license": "UNLICENSED",
+  "author": "Tempaku Neverland",
+  "homepage": "https://github.com/tempaku-neverland/website#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tempaku-neverland/website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tempaku-neverland/website/issues"
+  },
+  "scripts": {
+    "format": "run-s -c format:*",
+    "format:backend": "npm run format --workspace backend",
+    "format:frontend": "npm run format --workspace frontend",
+    "format:package-json": "prettier-package-json --success --write {.,./backend}/package.json",
+    "format:prettier": "prettier --write .",
+    "postinstall": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
+    "lint": "run-s -c lint:*",
+    "lint:backend": "npm run lint --workspace backend",
+    "lint:frontend": "npm run lint --workspace frontend",
+    "lint:package-json": "prettier-package-json --success --list-different {.,./backend}/package.json",
+    "lint:prettier": "prettier --check .",
+    "test": "run-s -c test:*",
+    "test:backend": "npm test --workspace backend",
+    "test:frontend": "npm test --workspace frontend"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "prettier-package-json": "^2.7.0"
+  },
+  "keywords": []
+}
