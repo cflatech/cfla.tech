@@ -13,7 +13,7 @@ describe("constructor", () => {
 
 describe("value", () => {
   describe("UUIDの形式のIDが指定された場合", () => {
-    it("IDが取得できる", () => {
+    test("IDが取得できる", () => {
       const id = new Id("550e8400-e29b-41d4-a716-446655440000");
       expect(id.value).toBe("550e8400-e29b-41d4-a716-446655440000");
     });
