@@ -5,7 +5,13 @@ import { AppService } from "./app.service";
 import { ArticlesModule } from "./articles/articles.module";
 
 @Module({
-  imports: [ArticlesModule, ConfigModule.forRoot()],
+  imports: [
+    ArticlesModule,
+    ConfigModule.forRoot({
+      envFilePath: `.env`,
+      isGlobal: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
