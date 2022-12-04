@@ -34,6 +34,7 @@ RUN \
   fish=3.1.2-3+deb11u1 \
   less=551-2 \
   ca-certificates=20210119 \
+  procps=2:3.3.17-5 \
   curl=7.74.0-1.3+deb11u3 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
