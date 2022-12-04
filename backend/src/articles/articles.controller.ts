@@ -5,13 +5,8 @@ import { ArticlesService } from "./articles.service";
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
-  @Get()
-  findAll() {
-    return this.articlesService.findAll();
-  }
-
   @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.articlesService.findOne(+id);
+  find(@Param("id") id: string) {
+    return this.articlesService.findOne(id);
   }
 }
