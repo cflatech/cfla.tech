@@ -3,7 +3,7 @@ import { ArticlesService } from "./articles.service";
 import { ArticlesController } from "./articles.controller";
 import { NotionConfigService } from "../config/notion.config";
 import { clientProvider } from "./providers/client.provider";
-import { ArticlesRepositoryInterfaceToken } from "./entities/article.repositry.interface";
+import { ArticlesRepositoryInterfaceToken } from "./models/article.repositry.interface";
 import { ArticlesRepository } from "./repositories/article.repository";
 
 @Module({

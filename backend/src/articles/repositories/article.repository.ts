@@ -1,8 +1,12 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Client, isFullPage } from "@notionhq/client";
-import { Article } from "../entities/article.entity";
-import { ArticlesRepositoryInterface } from "../entities/article.repositry.interface";
-import { Id } from "../valueObjects/id.valueObject";
+import { Article } from "../models/article.entity";
+import { ArticlesRepositoryInterface } from "../models/article.repositry.interface";
+import { Code } from "../models/block/code/code.value-object";
+import { Header } from "../models/block/header/header.value-objcet";
+import { Link } from "../models/block/link/link.value-object";
+import { Paragraph } from "../models/block/paragraph/paragraph.value-object";
+import { Id } from "../models/id/id.value-object";
 
 export enum InjectToken {
   NOTION_CLIENT = "notion_client",
@@ -30,6 +34,50 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
         ? pageResponse.properties.Title.title[0].plain_text
         : "";
 
-    return new Article(id, title, "fuga");
+    const article = new Article(id, title);
+
+    const blocks = await this.#client.blocks.children.list({
+      block_id: id.value,
+    });
+
+    // TODO: 本文データの構造を考える
+    blocks.results.forEach((block) => {
+      if (!("type" in block)) {
+        return;
+      }
+      if (block === null) {
+        return;
+      }
+
+      switch (block.type) {
+        case "paragraph": {
+          block.paragraph.rich_text.forEach((paragraph) => {
+            if (paragraph.href === null) {
+              article.addContent(new Paragraph(paragraph.plain_text));
+            } else {
+              article.addContent(
+                new Link(paragraph.plain_text, paragraph.href),
+              );
+            }
+          });
+          break;
+        }
+        case "heading_1": {
+          block.heading_1.rich_text.forEach((heading) => {
+            article.addContent(new Header(heading.plain_text));
+          });
+          break;
+        }
+        case "code": {
+          block.code.rich_text.forEach((code) => {
+            article.addContent(new Code(code.plain_text, block.code.language));
+          });
+          break;
+        }
+        default:
+      }
+    });
+
+    return article;
   }
 }

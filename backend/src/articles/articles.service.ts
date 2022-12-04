@@ -2,8 +2,8 @@ import { Inject, Injectable } from "@nestjs/common";
 import {
   ArticlesRepositoryInterface,
   ArticlesRepositoryInterfaceToken,
-} from "./entities/article.repositry.interface";
-import { Id } from "./valueObjects/id.valueObject";
+} from "./models/article.repositry.interface";
+import { Id } from "./models/id/id.value-object";
 
 @Injectable()
 export class ArticlesService {

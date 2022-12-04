@@ -1,4 +1,4 @@
-import { InvalidArgumentException } from "../../exceptions/invalidArgument.exception";
+import { InvalidArgumentException } from "../../../exceptions/invalidArgument.exception";
 
 export class Id {
   #id: string;

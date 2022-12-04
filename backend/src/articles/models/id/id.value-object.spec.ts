@@ -1,4 +1,4 @@
-import { Id } from "./id.valueObject";
+import { Id } from "./id.value-object";
 
 describe("constructor", () => {
   describe("UUID以外の形式のIDが指定された場合", () => {

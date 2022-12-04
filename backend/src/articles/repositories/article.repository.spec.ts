@@ -1,23 +1,26 @@
+import { ConfigModule } from "@nestjs/config";
 import { Test } from "@nestjs/testing";
-import { Client } from "@notionhq/client";
-import { Id } from "../valueObjects/id.valueObject";
-import { ArticlesRepository, InjectToken } from "./article.repository";
+import { fail } from "assert";
+import { NotionConfigService } from "../../config/notion.config";
+import { Paragraph } from "../models/block/paragraph/paragraph.value-object";
+import { Id } from "../models/id/id.value-object";
+import { clientProvider } from "../providers/client.provider";
+import { ArticlesRepository } from "./article.repository";
 
-describe("find", () => {
+// NOTE: API接続が発生するため必要がないならskipする
+// TODO: mockにするので気が向いたら
+describe.skip("find", () => {
   describe("記事IDが与えられた場合、", () => {
     let repository: ArticlesRepository;
 
     beforeAll(async () => {
       const module = await Test.createTestingModule({
-        providers: [
-          ArticlesRepository,
-          {
-            provide: InjectToken.NOTION_CLIENT,
-            useValue: new Client({
-              auth: "",
-            }),
-          },
+        imports: [
+          ConfigModule.forRoot({
+            envFilePath: ".env.test.local",
+          }),
         ],
+        providers: [ArticlesRepository, NotionConfigService, clientProvider],
       }).compile();
 
       repository = module.get<ArticlesRepository>(ArticlesRepository);
@@ -30,6 +33,13 @@ describe("find", () => {
       expect(article?.title).toBe("タイトル");
     });
 
-    it.skip("該当する記事の内容が取得できる");
+    it("該当する記事の内容が取得できる", async () => {
+      const id = new Id("8a314058-64c6-41e4-9c86-9b62548240cd");
+      const article = await repository.find(id);
+      if (!(article?.content[1] instanceof Paragraph)) {
+        fail();
+      }
+      expect(article.content[1].text).toBe("内容");
+    });
   });
 });
