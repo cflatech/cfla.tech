@@ -40,7 +40,6 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
       block_id: id.value,
     });
 
-    // TODO: 本文データの構造を考える
     blocks.results.forEach((block) => {
       if (!("type" in block)) {
         return;
