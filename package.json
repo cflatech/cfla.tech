@@ -1,17 +1,17 @@
 {
   "private": true,
-  "name": "tempaku-neverland-website",
+  "name": "cfla.tech",
   "version": "0.0.1",
-  "description": "Tempaku Neverland's official website",
+  "description": "cfla.tech website",
   "license": "UNLICENSED",
-  "author": "Tempaku Neverland",
-  "homepage": "https://github.com/tempaku-neverland/website#readme",
+  "author": "CFLAT",
+  "homepage": "https://github.com/cflatech/cfla.tech",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tempaku-neverland/website.git"
+    "url": "git+https://github.com/cflatech/cfla.tech.git"
   },
   "bugs": {
-    "url": "https://github.com/tempaku-neverland/website/issues"
+    "url": "https://github.com/cflatech/cfla.tech/issues"
   },
   "scripts": {
     "format": "run-s -c format:*",

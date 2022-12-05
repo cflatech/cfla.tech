@@ -1,17 +1,17 @@
 {
   "private": true,
-  "name": "tempaku-neverland-website-backend",
+  "name": "cfla.tech",
   "version": "0.0.1",
-  "description": "Tempaku Neverland's official website backend",
+  "description": "cfla.tech website",
   "license": "UNLICENSED",
-  "author": "Tempaku Neverland",
-  "homepage": "https://github.com/tempaku-neverland/website#readme",
+  "author": "CFLAT",
+  "homepage": "https://github.com/cflatech/cfla.tech",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tempaku-neverland/website.git"
+    "url": "git+https://github.com/cflatech/cfla.tech.git"
   },
   "bugs": {
-    "url": "https://github.com/tempaku-neverland/website/issues"
+    "url": "https://github.com/cflatech/cfla.tech/issues"
   },
   "main": ".eslintrc.js",
   "directories": {
@@ -39,6 +39,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@notionhq/client": "^2.2.1",
+    "cache-manager": "^4.1.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
@@ -47,6 +48,7 @@
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.1.4",
+    "@types/cache-manager": "^4.0.2",
     "@types/express": "^4.17.13",
     "@types/jest": "28.1.8",
     "@types/node": "^16.0.0",
