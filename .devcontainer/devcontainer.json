@@ -20,7 +20,8 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "kavod-io.vscode-jest-test-adapter",
-        "humao.rest-client"
+        "humao.rest-client",
+        "styled-components.vscode-styled-components"
       ]
     }
   }
