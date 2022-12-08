@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/node": "18.7.21",
