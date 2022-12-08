@@ -32,16 +32,46 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-52.512621,-62.545004)">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.5833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#803300;stroke-width:0.264583"
-       x="52.15279"
-       y="70.101479"
-       id="text113"><tspan
-         sodipodi:role="line"
-         id="tspan111"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:10.5833px;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000;stroke-width:0.264583"
-         x="52.15279"
-         y="70.101479">CFLA.TECH</tspan></text>
+    <g
+       aria-label="CFLA.TECH"
+       id="text113"
+       style="font-weight:bold;font-size:10.5833px;-inkscape-font-specification:'sans-serif Bold';fill:#803300;stroke-width:0.264583">
+      <path
+         d="m 56.587193,70.249645 c 1.365245,0 2.465908,-0.497415 3.185573,-1.396996 L 58.43927,67.646153 c -0.465665,0.560915 -1.037163,0.867831 -1.746244,0.867831 -1.21708,0 -2.063744,-0.846664 -2.063744,-2.11666 0,-1.269996 0.846664,-2.11666 2.063744,-2.11666 0.709081,0 1.280579,0.306915 1.746244,0.86783 l 1.333496,-1.206496 c -0.719665,-0.89958 -1.820328,-1.396995 -3.185573,-1.396995 -2.349493,0 -4.074571,1.598078 -4.074571,3.852321 0,2.254243 1.725078,3.852321 4.074571,3.852321 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path423" />
+      <path
+         d="m 66.514337,64.312414 v -1.619245 h -5.810232 v 7.40831 h 2.095494 v -2.539992 h 3.270239 v -1.619245 h -3.270239 v -1.629828 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path425" />
+      <path
+         d="m 67.498586,70.101479 h 5.630316 V 68.439901 H 69.59408 v -5.746732 h -2.095494 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path427" />
+      <path
+         d="m 79.584715,70.101479 h 2.18016 l -3.280823,-7.40831 h -2.063744 l -3.270239,7.40831 h 2.137826 l 0.582082,-1.439329 h 3.132656 z m -3.100907,-2.984491 0.952497,-2.370659 0.952497,2.370659 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path429" />
+      <path
+         d="m 83.437029,70.196728 c 0.687915,0 1.206497,-0.497415 1.206497,-1.195913 0,-0.719664 -0.518582,-1.185329 -1.206497,-1.185329 -0.677331,0 -1.206496,0.465665 -1.206496,1.185329 0,0.698498 0.529165,1.195913 1.206496,1.195913 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path431" />
+      <path
+         d="m 86.897775,70.101479 h 2.095493 v -5.746732 h 2.264826 v -1.661578 h -6.635728 v 1.661578 h 2.275409 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path433" />
+      <path
+         d="m 94.115588,68.482234 v -1.354663 h 3.291406 v -1.566328 h -3.291406 v -1.248829 h 3.735905 v -1.619245 h -5.810232 v 7.40831 h 5.947815 v -1.619245 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path435" />
+      <path
+         d="m 102.83624,70.249645 c 1.36525,0 2.46591,-0.497415 3.18558,-1.396996 l -1.3335,-1.206496 c -0.46566,0.560915 -1.03716,0.867831 -1.74624,0.867831 -1.21708,0 -2.06375,-0.846664 -2.06375,-2.11666 0,-1.269996 0.84667,-2.11666 2.06375,-2.11666 0.70908,0 1.28058,0.306915 1.74624,0.86783 l 1.3335,-1.206496 c -0.71967,-0.89958 -1.82033,-1.396995 -3.18558,-1.396995 -2.34949,0 -4.074568,1.598078 -4.074568,3.852321 0,2.254243 1.725078,3.852321 4.074568,3.852321 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path437" />
+      <path
+         d="m 111.90614,62.693169 v 2.783408 h -2.85749 v -2.783408 h -2.0955 v 7.40831 h 2.0955 v -2.889241 h 2.85749 v 2.889241 h 2.09549 v -7.40831 z"
+         style="font-weight:800;font-family:Montserrat;-inkscape-font-specification:'Montserrat Ultra-Bold';fill:#000000"
+         id="path439" />
+    </g>
   </g>
 </svg>
