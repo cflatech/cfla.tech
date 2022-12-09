@@ -1,13 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { Global } from "@emotion/react";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
+import { global } from "../styles/global";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Global styles={[global]} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 
