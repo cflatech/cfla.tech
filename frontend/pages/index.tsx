@@ -1,21 +1,31 @@
+import { css } from "@emotion/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import { styles } from "../styles/styles";
+
+const content = css`
+  display: flex;
+  justify-content: center;
+  max-width: ${styles.layouts.maxWidth};
+`;
+
+const main = css`
+  flex-basis: 2/3;
+`;
+
+const aside = css`
+  flex-basis: 1/3;
+`;
 
 const Home: NextPage = () => (
-  <div className={styles.container}>
+  <div css={content}>
     <Head>
       <title>CFLA.TECH</title>
       <meta name="description" content="CFLAT Blog" />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     </Head>
-
-    <main className={styles.main}>
-      <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
-    </main>
+    <main css={main}>hoge</main>
+    <aside css={aside}>fuga</aside>
   </div>
 );
 

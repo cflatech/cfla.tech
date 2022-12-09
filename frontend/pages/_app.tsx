@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Global } from "@emotion/react";
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
 import { global } from "../styles/global";
