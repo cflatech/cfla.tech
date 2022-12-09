@@ -1,32 +1,38 @@
 import { css } from "@emotion/react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { List } from "../components/ArticleList/List";
 import { styles } from "../styles/styles";
 
 const content = css`
   display: flex;
   justify-content: center;
-  max-width: ${styles.layouts.maxWidth};
 `;
 
 const main = css`
-  flex-basis: 2/3;
+  max-width: calc(2 * ${styles.layouts.maxWidth}px / 3);
+  flex-basis: calc(2 * 100% / 3);
 `;
 
 const aside = css`
-  flex-basis: 1/3;
+  max-width: calc(${styles.layouts.maxWidth}px / 3);
+  flex-basis: calc(100% / 3);
 `;
 
 const Home: NextPage = () => (
-  <div css={content}>
+  <>
     <Head>
       <title>CFLA.TECH</title>
       <meta name="description" content="CFLAT Blog" />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     </Head>
-    <main css={main}>hoge</main>
-    <aside css={aside}>fuga</aside>
-  </div>
+    <div css={content}>
+      <main css={main}>
+        <List />
+      </main>
+      <aside css={aside}>fuga</aside>
+    </div>
+  </>
 );
 
 export default Home;
