@@ -7,7 +7,6 @@ const sideBar = css`
   background-color: #fff;
   padding: 20px;
   margin: 10px;
-  margin-left: 0px;
 `;
 
 const profile = css`
@@ -32,7 +31,7 @@ export const Sidebar = (): JSX.Element => (
         <img width="20%" src="cflat.svg" />
         <div css={author}>
           <div css={authorName}>CFLAT</div>
-          <div css={authorDescription}>どこかの会社のフロントもバックもやるデベロッパーっぽい人</div>
+          <div css={authorDescription}>どこかの会社のデベロッパーっぽい人。だいたいTypeScriptかPHPを書いてます。</div>
         </div>
       </div>
     </div>
