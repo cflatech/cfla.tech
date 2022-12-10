@@ -7,12 +7,8 @@ export const styles = {
     base: "#708090",
     // accent: "#"
   },
-  font: {
-    large: {
-      size: 30,
-    },
-    medium: {
-      size: 16,
-    },
+  fontSize: {
+    large: 32,
+    medium: 16,
   },
 };

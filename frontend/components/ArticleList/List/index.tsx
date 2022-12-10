@@ -1,10 +1,22 @@
-import { css } from "@emotion/react";
+import { Item } from "./Item";
 
-const listBox = css`
-  border-radius: 15px;
-  background-color: #fff;
-  padding: 20px;
-  margin: 20px;
-`;
+export const List = (): JSX.Element => {
+  const items = [
+    {
+      id: "1",
+      title: "記事タイトル",
+    },
+    {
+      id: "2",
+      title: "記事タイトル2",
+    },
+  ];
 
-export const List = (): JSX.Element => <div css={listBox}>記事リスト</div>;
+  return (
+    <div>
+      {items.map((item) => (
+        <Item key={item.id} item={item} />
+      ))}
+    </div>
+  );
+};
