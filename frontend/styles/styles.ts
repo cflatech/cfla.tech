@@ -5,7 +5,7 @@ export const styles = {
   colors: {
     main: "#b0c4de",
     base: "#708090",
-    // accent: "#"
+    accent: "#00B5AD",
   },
   fontSize: {
     large: 32,
