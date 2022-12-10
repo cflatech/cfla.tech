@@ -6,7 +6,7 @@ const itemStyle = css`
   border-radius: 15px;
   background-color: #fff;
   padding: 20px;
-  margin: 20px;
+  margin: 10px;
   list-style: none;
 `;
 
@@ -53,6 +53,7 @@ type Props = {
   };
 };
 
+// TODO: 後でコンポーネント分ける
 export const Item = ({ item }: Props): JSX.Element => (
   <li css={itemStyle}>
     <div css={title}>

@@ -25,7 +25,7 @@ const Home: NextPage = () => (
     <Head>
       <title>CFLA.TECH</title>
       <meta name="description" content="CFLAT Blog" />
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="icon" href="/cflat.svg" type="image/svg+xml" />
     </Head>
     <div css={content}>
       <main css={main}>
