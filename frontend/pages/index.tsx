@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { List } from "../components/ArticleList/List";
+import { Sidebar } from "../components/ArticleList/Sidebar";
 import { styles } from "../styles/styles";
 
 const content = css`
@@ -30,7 +31,9 @@ const Home: NextPage = () => (
       <main css={main}>
         <List />
       </main>
-      <aside css={aside}>fuga</aside>
+      <aside css={aside}>
+        <Sidebar />
+      </aside>
     </div>
   </>
 );
