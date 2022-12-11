@@ -15,14 +15,13 @@ const profile = css`
 
 const author = css`
   margin-left: 10px;
-`
+`;
 
 const authorName = css`
   font-weight: bold;
 `;
 
-const authorDescription = css`
-`
+const authorDescription = css``;
 
 export const Sidebar = (): JSX.Element => (
   <div css={sideBar}>
@@ -31,7 +30,9 @@ export const Sidebar = (): JSX.Element => (
         <img width="20%" src="cflat.svg" />
         <div css={author}>
           <div css={authorName}>CFLAT</div>
-          <div css={authorDescription}>どこかの会社のデベロッパーっぽい人。だいたいTypeScriptかPHPを書いてます。</div>
+          <div css={authorDescription}>
+            どこかの会社のデベロッパーっぽい人。だいたいTypeScriptかPHPを書いてます。
+          </div>
         </div>
       </div>
     </div>
