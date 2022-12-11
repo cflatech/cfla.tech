@@ -6,7 +6,8 @@ const header = css`
   background-color: ${styles.colors.main};
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 const headerContent = css`
@@ -14,11 +15,17 @@ const headerContent = css`
   width: 100%;
 `;
 
+const logo = css`
+  padding-left: 20px;
+`;
+
 export default function Header(): JSX.Element {
   return (
     <header css={header}>
       <div css={headerContent}>
-        <Logo />
+        <div css={logo}>
+          <Logo />
+        </div>
       </div>
     </header>
   );
