@@ -22,6 +22,82 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
     this.#client = client;
   }
 
+  async getPublish(database_id: string): Promise<Article[]> {
+    const articlesResponse = await this.#client.databases.query({
+      database_id,
+      filter: {
+        property: "Publish",
+        checkbox: {
+          equals: true,
+        },
+      },
+    });
+
+    const articles = (
+      await Promise.all(
+        articlesResponse.results.map(async (result) => {
+          if (!("properties" in result)) {
+            return null;
+          }
+
+          const { properties } = result;
+          if (properties.Publish.type !== "checkbox") {
+            return null;
+          }
+
+          if (properties.Date.type !== "date") {
+            return null;
+          }
+
+          if (properties.Tag.type !== "multi_select") {
+            return null;
+          }
+
+          if (properties.Title.type !== "title") {
+            return null;
+          }
+
+          const pageResponse = await this.#client.pages.retrieve({
+            page_id: result.id,
+          });
+
+          if (!isFullPage(pageResponse)) {
+            return null;
+          }
+
+          const article = new Article(
+            new Id(result.id),
+            properties.Title.title.map((title) => title.plain_text).at(0) ?? "",
+            properties.Date.date?.start ?? "",
+            properties.Tag.multi_select.map((tag) => tag.name),
+          );
+
+          const blocks = await this.#client.blocks.children.list({
+            block_id: result.id,
+          });
+          blocks.results.forEach((block) => {
+            if (!("type" in block)) {
+              return;
+            }
+            if (block === null) {
+              return;
+            }
+
+            this.parseBlockResponse(block).forEach((content) =>
+              article.addContent(content),
+            );
+          });
+
+          return article;
+        }),
+      )
+    ).filter((article): article is Article => !!article);
+
+    console.log(articles);
+
+    return articles;
+  }
+
   async find(id: Id): Promise<Article | null> {
     const pageResponse = await this.#client.pages.retrieve({
       page_id: id.value,
@@ -36,7 +112,7 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
         ? pageResponse.properties.Title.title[0].plain_text
         : "";
 
-    const article = new Article(id, title);
+    const article = new Article(id, title, "", []);
 
     const blocks = await this.#client.blocks.children.list({
       block_id: id.value,
