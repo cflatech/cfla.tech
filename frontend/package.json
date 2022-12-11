@@ -3,19 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "lint": "next lint",
     "format": "next lint --fix",
     "test": "jest"
   },
-  "dependencies": {
-    "next": "12.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
   "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/node": "18.7.21",
@@ -26,10 +22,16 @@
     "eslint": "8.24.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-next": "12.3.1",
+    "eslint-config-next": "^13.0.6",
     "eslint-config-prettier": "^8.5.0",
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
     "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "next": "^13.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
