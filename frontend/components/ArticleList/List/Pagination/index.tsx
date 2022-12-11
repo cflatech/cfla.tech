@@ -11,7 +11,7 @@ const button = css`
   text-align: center;
   border-radius: 15px;
   font-weight: bold;
-  margin: 20px;
+  margin: 10px;
   margin-bottom: 0px;
   width: calc(${styles.layouts.maxWidth}px / 10);
 `;
