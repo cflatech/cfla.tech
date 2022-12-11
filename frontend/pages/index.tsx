@@ -1,7 +1,9 @@
 import { css } from "@emotion/react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { List } from "../components/ArticleList/List";
+import { Pagination } from "../components/ArticleList/List/Pagination";
 import { Sidebar } from "../components/ArticleList/Sidebar";
 import { styles } from "../styles/styles";
 
@@ -16,6 +18,9 @@ const content = css`
 const main = css`
   max-width: calc(2 * ${styles.layouts.maxWidth}px / 3);
   flex-basis: calc(2 * 100% / 3);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   @media (max-width: 900px) {
     max-width: none;
@@ -46,6 +51,7 @@ const Home: NextPage = () => (
     <div css={content}>
       <main css={main}>
         <List />
+        <Pagination />
       </main>
       <aside css={aside}>
         <Sidebar />

@@ -7,6 +7,7 @@ const itemStyle = css`
   background-color: #fff;
   padding: 20px;
   margin: 10px;
+  margin-bottom: 0px;
   list-style: none;
 `;
 
