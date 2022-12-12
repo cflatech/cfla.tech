@@ -61,10 +61,13 @@ describe.skip("getPublic", () => {
   });
 
   test("公開中の記事が取得できる", async () => {
-    const articles = await repository.getPublished(
-      "441a1e02cdda4f299fab75579b31da9e",
-    );
-    expect(articles).toHaveLength(1);
-    expect(articles[0].id.value).toBe("8a314058-64c6-41e4-9c86-9b62548240cd");
+    const articles = await repository.getPublished();
+    expect(articles).toHaveLength(5);
+    expect(
+      articles.find(
+        (article) =>
+          article.id.value === "aa056558-2696-4542-adbe-5f8b2d0d181f",
+      ),
+    ).not.toBeUndefined();
   });
 });

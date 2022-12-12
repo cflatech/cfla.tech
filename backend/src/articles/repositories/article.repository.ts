@@ -1,6 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Client, isFullPage } from "@notionhq/client";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { NotionConfigService } from "../../config/notion.config";
 import { Article } from "../models/article.entity";
 import { ArticlesRepositoryInterface } from "../models/article.repositry.interface";
 import { BlockInterface } from "../models/block/block-content.interface";
@@ -18,13 +19,20 @@ export enum InjectToken {
 export class ArticlesRepository implements ArticlesRepositoryInterface {
   #client: Client;
 
-  constructor(@Inject(InjectToken.NOTION_CLIENT) client: Client) {
+  #databaseId: string;
+
+  constructor(
+    @Inject(InjectToken.NOTION_CLIENT) client: Client,
+    config: NotionConfigService,
+  ) {
     this.#client = client;
+    this.#databaseId = config.notionDatabaseId;
   }
 
-  async getPublished(database_id: string): Promise<Article[]> {
+  // TODO: でかすぎるのでリファクタ予定
+  async getPublished(): Promise<Article[]> {
     const articlesResponse = await this.#client.databases.query({
-      database_id,
+      database_id: this.#databaseId,
       filter: {
         property: "Publish",
         checkbox: {
