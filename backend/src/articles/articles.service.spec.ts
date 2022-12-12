@@ -34,4 +34,13 @@ describe("ArticlesService", () => {
 
     expect(article?.id.value).toBe("8a314058-64c6-41e4-9c86-9b62548240cd");
   });
+
+  test.skip("指定したページの記事情報が取得できる", async () => {
+    const articles = await service.getPublished(1);
+    expect(articles.map((article) => article.title)).toStrictEqual([
+      "4",
+      "3",
+      "2",
+    ]);
+  });
 });
