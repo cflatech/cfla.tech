@@ -22,7 +22,7 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
     this.#client = client;
   }
 
-  async getPublish(database_id: string): Promise<Article[]> {
+  async getPublished(database_id: string): Promise<Article[]> {
     const articlesResponse = await this.#client.databases.query({
       database_id,
       filter: {
@@ -92,8 +92,6 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
         }),
       )
     ).filter((article): article is Article => !!article);
-
-    console.log(articles);
 
     return articles;
   }

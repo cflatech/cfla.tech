@@ -61,7 +61,7 @@ describe.skip("getPublic", () => {
   });
 
   test("公開中の記事が取得できる", async () => {
-    const articles = await repository.getPublish(
+    const articles = await repository.getPublished(
       "441a1e02cdda4f299fab75579b31da9e",
     );
     expect(articles).toHaveLength(1);
