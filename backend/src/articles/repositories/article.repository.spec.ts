@@ -13,7 +13,7 @@ describe.skip("find", () => {
   describe("記事IDが与えられた場合、", () => {
     let repository: ArticlesRepository;
 
-    beforeAll(async () => {
+    beforeEach(async () => {
       const module = await Test.createTestingModule({
         imports: [
           ConfigModule.forRoot({
@@ -41,5 +41,33 @@ describe.skip("find", () => {
       }
       expect(article.content[1].text).toBe("内容");
     });
+  });
+});
+
+describe.skip("getPublic", () => {
+  let repository: ArticlesRepository;
+
+  beforeEach(async () => {
+    const module = await Test.createTestingModule({
+      imports: [
+        ConfigModule.forRoot({
+          envFilePath: ".env.test.local",
+        }),
+      ],
+      providers: [ArticlesRepository, NotionConfigService, clientProvider],
+    }).compile();
+
+    repository = module.get<ArticlesRepository>(ArticlesRepository);
+  });
+
+  test("公開中の記事が取得できる", async () => {
+    const articles = await repository.getPublished();
+    expect(articles).toHaveLength(5);
+    expect(
+      articles.find(
+        (article) =>
+          article.id.value === "aa056558-2696-4542-adbe-5f8b2d0d181f",
+      ),
+    ).not.toBeUndefined();
   });
 });

@@ -8,9 +8,15 @@ export class Article {
 
   readonly content: BlockInterface[];
 
-  constructor(id: Id, titile: string) {
+  readonly date: string;
+
+  readonly tag: string[];
+
+  constructor(id: Id, titile: string, date: string, tag: string[]) {
     this.id = id;
     this.title = titile;
+    this.date = date;
+    this.tag = tag;
     this.content = [];
   }
 

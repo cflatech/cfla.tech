@@ -12,4 +12,8 @@ export class NotionConfigService {
   get notionToken(): string {
     return this.#configService.get<string>("NOTION_TOKEN") ?? "";
   }
+
+  get notionDatabaseId(): string {
+    return this.#configService.get<string>("NOTION_DATABASE_ID") ?? "";
+  }
 }
