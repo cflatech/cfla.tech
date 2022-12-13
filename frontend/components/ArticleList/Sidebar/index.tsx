@@ -27,7 +27,7 @@ export const Sidebar = (): JSX.Element => (
   <div css={sideBar}>
     <div>
       <div css={profile}>
-        <img width="20%" src="cflat.svg" />
+        <img width="20%" src="/cflat.svg" />
         <div css={author}>
           <div css={authorName}>CFLAT</div>
           <div css={authorDescription}>
