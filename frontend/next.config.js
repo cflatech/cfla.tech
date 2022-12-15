@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   compiler: {
     emotion: true,
+    reactRemoveProperties: true,
   },
   webpack(config) {
     config.module.rules.push({
