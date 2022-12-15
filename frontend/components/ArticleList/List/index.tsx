@@ -52,7 +52,6 @@ export const List = (): JSX.Element | null => {
     isLoading,
   } = useSWR(`/articles?page=${page}`, fetcher);
 
-  // TODO: テスト書く
   if (!router.isReady) return null;
   if (error) return null;
   if (isLoading) return null;
