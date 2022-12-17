@@ -54,7 +54,7 @@ const Home = ({ page }: Props) => (
     </Head>
     <div css={content}>
       <main css={main}>
-        <List />
+        <List page={page} />
         <Pagination page={page} />
       </main>
       <aside css={aside}>
