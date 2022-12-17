@@ -1,16 +1,14 @@
 import axios from "axios";
 import useSWR from "swr";
-import { Article } from "../types/article";
+import { Article, ArticleBlock } from "../types/article";
 
+// TODO: ここの型もなんとかする
 export type ArticleResponse = {
   id: {
     value: string;
   };
   title: string;
-  content: {
-    type: string;
-    text: string;
-  }[];
+  blocks: ArticleBlock[];
   date: string;
   tag: string[];
 };
@@ -24,7 +22,7 @@ const fetcher = async (url: string) => {
     id: article.id.value,
     title: article.title,
     date: article.date,
-    content: article.content,
+    blocks: article.blocks,
   }));
   return items;
 };

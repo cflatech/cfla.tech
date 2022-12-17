@@ -28,7 +28,7 @@ describe("List", () => {
               {
                 id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
                 title: "4",
-                content: [],
+                blocks: [],
                 date: "2022-12-15",
                 tag: [],
               },
@@ -75,7 +75,7 @@ describe("List", () => {
                 {
                   id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
                   title: "4",
-                  content: [],
+                  blocks: [],
                   date: "2022-12-15",
                   tag: [],
                 },
@@ -105,7 +105,7 @@ describe("List", () => {
                 {
                   id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
                   title: "4",
-                  content: [],
+                  blocks: [],
                   date: "2022-12-15",
                   tag: [],
                 },
@@ -135,7 +135,7 @@ describe("List", () => {
                 {
                   id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
                   title: "4",
-                  content: [],
+                  blocks: [],
                   date: "2022-12-15",
                   tag: [],
                 },
