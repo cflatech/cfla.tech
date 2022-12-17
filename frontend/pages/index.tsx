@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { List } from "../components/ArticleList/List";
 import { Pagination } from "../components/ArticleList/List/Pagination";
@@ -39,7 +39,12 @@ const aside = css`
   }
 `;
 
-const Home: NextPage = () => (
+type Props = {
+  page: number;
+};
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const Home = ({ page }: Props) => (
   <>
     <Head>
       <title>CFLA.TECH</title>
@@ -50,7 +55,7 @@ const Home: NextPage = () => (
     <div css={content}>
       <main css={main}>
         <List />
-        <Pagination />
+        <Pagination page={page} />
       </main>
       <aside css={aside}>
         <Sidebar />
@@ -58,5 +63,16 @@ const Home: NextPage = () => (
     </div>
   </>
 );
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const page = Number(context.query.page ?? 1);
+  const props: Props = {
+    page,
+  };
+
+  return {
+    props,
+  };
+};
 
 export default Home;

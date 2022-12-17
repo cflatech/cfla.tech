@@ -1,159 +1,95 @@
 import { render, RenderResult, screen } from "@testing-library/react";
-import * as router from "next/router";
-import * as swr from "swr";
-import { NextRouter } from "next/router";
-import { List } from "..";
+import { Pagination } from ".";
+import { useArticleItems } from "../../../../hooks/useArticleItems";
 
-describe("List", () => {
-  describe("routerがReadyでない場合", () => {
-    let list: RenderResult;
+jest.mock("../../../../hooks/useArticleItems");
 
+describe("Pagination", () => {
+  describe("はじめのページの場合", () => {
+    let pagination: RenderResult;
     beforeEach(() => {
-      jest
-        .spyOn<typeof router, "useRouter">(router, "useRouter")
-        .mockImplementationOnce(
-          () =>
-            ({
-              query: {
-                page: undefined,
-              },
-              isReady: false,
-            } as unknown as NextRouter),
-        );
-
-      jest.spyOn(swr, "default").mockImplementation(
-        () =>
-          ({
-            data: [
-              {
-                id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
-                title: "4",
-                blocks: [],
-                date: "2022-12-15",
-                tag: [],
-              },
-            ],
-            error: null,
-            isLoading: false,
-          } as unknown as swr.SWRResponse),
-      );
-
-      list = render(<List />);
+      (useArticleItems as jest.Mock).mockReturnValue({
+        items: [],
+        isLoading: true,
+      });
+      pagination = render(<Pagination page={1} />);
     });
 
     afterEach(() => {
-      list.unmount();
+      pagination.unmount();
     });
 
-    test("リストが表示されない", async () => {
-      expect(screen.queryByTestId("list")).toBe(null);
+    test("次のページが表示されない", () => {
+      expect(screen.queryByText("次のページ")).toBeNull();
     });
   });
 
-  describe("routerがReadyの場合", () => {
-    let list: RenderResult;
+  describe("前のページのItemが存在しない場合", () => {
+    let pagination: RenderResult;
     beforeEach(() => {
-      jest
-        .spyOn<typeof router, "useRouter">(router, "useRouter")
-        .mockImplementationOnce(
-          () =>
-            ({
-              query: {
-                page: undefined,
-              },
-              isReady: true,
-            } as unknown as NextRouter),
-        );
+      (useArticleItems as jest.Mock).mockImplementation(() => ({
+        items: [],
+        isLoading: false,
+      }));
+      pagination = render(<Pagination page={1} />);
     });
 
-    describe("errorが発生した場合、", () => {
-      beforeEach(() => {
-        jest.spyOn(swr, "default").mockImplementation(
-          () =>
-            ({
-              data: [
-                {
-                  id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
-                  title: "4",
-                  blocks: [],
-                  date: "2022-12-15",
-                  tag: [],
-                },
-              ],
-              error: "error",
-              isLoading: false,
-            } as unknown as swr.SWRResponse),
-        );
-
-        list = render(<List />);
-      });
-      afterEach(() => {
-        list.unmount();
-      });
-
-      test("リストが表示されない", async () => {
-        expect(screen.queryByTestId("list")).toBe(null);
-      });
+    afterEach(() => {
+      pagination.unmount();
     });
 
-    describe("errorが発生せずLoading中の場合、", () => {
-      beforeEach(() => {
-        jest.spyOn(swr, "default").mockImplementation(
-          () =>
-            ({
-              data: [
-                {
-                  id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
-                  title: "4",
-                  blocks: [],
-                  date: "2022-12-15",
-                  tag: [],
-                },
-              ],
-              error: null,
-              isLoading: true,
-            } as unknown as swr.SWRResponse),
-        );
+    test("前のページヘが表示されない", () => {
+      expect(screen.queryByText("前のページ")).toBeNull();
+    });
+  });
 
-        list = render(<List />);
-      });
-      afterEach(() => {
-        list.unmount();
-      });
-
-      test("リストが表示されない", async () => {
-        expect(screen.queryByTestId("list")).toBe(null);
-      });
+  describe("前のページのItemを読込中の場合", () => {
+    let pagination: RenderResult;
+    beforeEach(() => {
+      (useArticleItems as jest.Mock).mockImplementation(() => ({
+        items: [
+          {
+            id: "id",
+            title: "title",
+            date: "2020-11-12",
+            blocks: [],
+          },
+        ],
+        isLoading: true,
+      }));
+      pagination = render(<Pagination page={1} />);
     });
 
-    describe("errorが発生せずLoadingでもない場合、", () => {
-      beforeEach(() => {
-        jest.spyOn(swr, "default").mockImplementation(
-          () =>
-            ({
-              data: [
-                {
-                  id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
-                  title: "4",
-                  blocks: [],
-                  date: "2022-12-15",
-                  tag: [],
-                },
-              ],
-              error: null,
-              isLoading: false,
-            } as unknown as swr.SWRResponse),
-        );
+    afterEach(() => {
+      pagination.unmount();
+    });
+    test("前のページヘが表示されない", () => {
+      expect(screen.queryByText("前のページ")).toBeNull();
+    });
+  });
 
-        list = render(<List />);
-      });
-      afterEach(() => {
-        list.unmount();
-      });
+  describe("前のページが存在している場合", () => {
+    let pagination: RenderResult;
+    beforeEach(() => {
+      (useArticleItems as jest.Mock).mockImplementation(() => ({
+        items: [
+          {
+            id: "id",
+            title: "title",
+            date: "2020-11-12",
+            blocks: [],
+          },
+        ],
+        isLoading: false,
+      }));
+      pagination = render(<Pagination page={1} />);
+    });
 
-      test("リストが表示される", async () => {
-        expect(screen.queryByTestId("list")).not.toBe(null);
-      });
+    afterEach(() => {
+      pagination.unmount();
+    });
+    test("前のページヘが表示されない", () => {
+      expect(screen.queryByText("前のページ")).not.toBeNull();
     });
   });
 });
