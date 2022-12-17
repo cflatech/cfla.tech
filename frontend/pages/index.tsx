@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import { List } from "../components/ArticleList/List";
-import { Pagination } from "../components/ArticleList/List/Pagination";
-import { Sidebar } from "../components/ArticleList/Sidebar";
+import { List } from "../components/Article/List";
+import { Pagination } from "../components/Article/List/Pagination";
+import { Sidebar } from "../components/Sidebar";
 import { styles } from "../styles/styles";
 
 const content = css`

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { ArticleBlock } from "../../types/article";
+import { ArticleBlock } from "../../../types/article";
 import { Code } from "./Code";
 import { Header } from "./Header";
 import { Link } from "./Link";

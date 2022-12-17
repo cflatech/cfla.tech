@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Paragraph as ParagraphType } from "../../../types/article";
+import { Paragraph as ParagraphType } from "../../../../types/article";
 
 type Props = {
   paragraph: ParagraphType;

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { createHash } from "crypto";
 import { css } from "@emotion/react";
 import { styles } from "../../../../styles/styles";
 import { Article } from "../../../../types/article";
-import { Block } from "../../../Block";
+import { ReactNode } from "react";
 
 const itemStyle = css`
   border-radius: 15px;
@@ -52,10 +51,11 @@ const readMore = css`
 
 type Props = {
   item: Article;
+  children?: ReactNode;
 };
 
 // TODO: 後でコンポーネント分ける
-export const Item = ({ item }: Props): JSX.Element => (
+export const Item = ({ item, children }: Props): JSX.Element => (
   <li css={itemStyle}>
     <div css={title}>
       <div>
@@ -66,15 +66,8 @@ export const Item = ({ item }: Props): JSX.Element => (
         <time css={time}>{item.date}</time>
       </div>
     </div>
-    <div css={article}>
-      {item.blocks.slice(0, 3).map((block) => (
-        <Block
-          key={createHash("sha256").update(block.text).digest("hex")}
-          block={block}
-        />
-      ))}
-    </div>
-    <Link css={readMore} href="/">
+    <div css={article}>{children}</div>
+    <Link css={readMore} href={`/article/${item.id}`}>
       続きを読む
     </Link>
   </li>
