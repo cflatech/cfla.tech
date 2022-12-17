@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { List } from "../components/ArticleList/List";
 import { Pagination } from "../components/ArticleList/List/Pagination";
