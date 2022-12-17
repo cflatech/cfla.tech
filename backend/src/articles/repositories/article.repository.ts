@@ -92,7 +92,7 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
             }
 
             this.parseBlockResponse(block).forEach((content) =>
-              article.addContent(content),
+              article.addBlock(content),
             );
           });
 
@@ -133,7 +133,7 @@ export class ArticlesRepository implements ArticlesRepositoryInterface {
       }
 
       this.parseBlockResponse(block).forEach((content) =>
-        article.addContent(content),
+        article.addBlock(content),
       );
     });
 

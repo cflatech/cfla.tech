@@ -32,11 +32,11 @@ describe("getter", () => {
     test("記事内容がブロックごとに追加できる", () => {
       const paragraph = new Paragraph("paragraph-content");
       const code = new Code("code-content", "typescript");
-      article.addContent(paragraph);
-      article.addContent(code);
+      article.addBlock(paragraph);
+      article.addBlock(code);
 
-      expect(article.content[0]).toBeInstanceOf(Paragraph);
-      expect(article.content[1]).toBeInstanceOf(Code);
+      expect(article.blocks[0]).toBeInstanceOf(Paragraph);
+      expect(article.blocks[1]).toBeInstanceOf(Code);
     });
   });
 });

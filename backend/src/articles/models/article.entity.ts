@@ -6,7 +6,7 @@ export class Article {
 
   readonly title: string;
 
-  readonly content: BlockInterface[];
+  readonly blocks: BlockInterface[];
 
   readonly date: string;
 
@@ -17,10 +17,10 @@ export class Article {
     this.title = titile;
     this.date = date;
     this.tag = tag;
-    this.content = [];
+    this.blocks = [];
   }
 
-  addContent(block: BlockInterface) {
-    this.content.push(block);
+  addBlock(block: BlockInterface) {
+    this.blocks.push(block);
   }
 }
