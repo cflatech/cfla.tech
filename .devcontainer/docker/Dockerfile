@@ -44,14 +44,19 @@ RUN \
   fisher install pure-fish/pure \
   '
 
+# Install new git
+RUN \
+  apt-get update -y && \
+  apt-get install --no-install-recommends -y software-properties-common=0.96.20.2-2.1 && \
+  add-apt-repository "deb http://deb.debian.org/debian bullseye-backports main" && \
+  apt-get update -y && \
+  apt-get -t bullseye-backports install --no-install-recommends -y git=1:2.34.1-1~bpo11+1 && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
 # Install asdf
 ARG ASDF_VERSION=0.10.2
 RUN \
-  apt-get update -y && \
-  apt-get install --no-install-recommends -y \
-  git=1:2.30.2-1 && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
   gosu ${USERNAME} fish -c " \
   git clone https://github.com/asdf-vm/asdf.git /home/${USERNAME}/.asdf --branch v${ASDF_VERSION} && \
   mkdir -p /home/${USERNAME}/.config/fish/completions && \

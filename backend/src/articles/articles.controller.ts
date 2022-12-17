@@ -1,4 +1,11 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import {
+  Controller,
+  DefaultValuePipe,
+  Get,
+  Param,
+  ParseIntPipe,
+  Query,
+} from "@nestjs/common";
 import { ArticlesService } from "./articles.service";
 
 @Controller("articles")
@@ -11,7 +18,9 @@ export class ArticlesController {
   }
 
   @Get("")
-  getPublished(@Query("page") page = 1) {
+  getPublished(
+    @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number,
+  ) {
     return this.articlesService.getPublished(page);
   }
 }

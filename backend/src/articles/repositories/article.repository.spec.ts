@@ -36,10 +36,10 @@ describe.skip("find", () => {
     it("該当する記事の内容が取得できる", async () => {
       const id = new Id("8a314058-64c6-41e4-9c86-9b62548240cd");
       const article = await repository.find(id);
-      if (!(article?.content[1] instanceof Paragraph)) {
+      if (!(article?.blocks[1] instanceof Paragraph)) {
         fail();
       }
-      expect(article.content[1].text).toBe("内容");
+      expect(article.blocks[1].text).toBe("内容");
     });
   });
 });

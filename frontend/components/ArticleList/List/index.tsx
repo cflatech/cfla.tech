@@ -1,20 +1,19 @@
 import { Item } from "./Item";
+import { useArticleItems } from "../../../hooks/useArticleItems";
 
-export const List = (): JSX.Element => {
-  const items = [
-    {
-      id: "1",
-      title: "記事タイトル",
-    },
-    {
-      id: "2",
-      title: "記事タイトル2",
-    },
-  ];
+type Props = {
+  page: number;
+};
+
+export const List = ({ page }: Props): JSX.Element | null => {
+  const { items, isLoading } = useArticleItems(Number(page));
+
+  if (isLoading) return null;
+  if (items.length === 0) return null;
 
   return (
-    <div>
-      {items.map((item) => (
+    <div data-testid="list">
+      {items?.map((item) => (
         <Item key={item.id} item={item} />
       ))}
     </div>
