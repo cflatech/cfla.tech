@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const ReadMore = ({ article }: Props): JSX.Element => (
-  <Link css={readMore} href={`/article/${article.id}`}>
-    続きを読む
-  </Link>
+  <div css={readMore}>
+    <Link href={`/article/${article.id}`}>続きを読む</Link>
+  </div>
 );
