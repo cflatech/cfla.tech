@@ -1,7 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import useSWR from "swr";
 import { useArticle } from "./useArticle";
-import { useArticleItems } from "./useArticleItems";
 
 jest.mock("swr");
 

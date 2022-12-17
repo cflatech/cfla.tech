@@ -45,7 +45,11 @@ const isArticle = (
 export const useArticle = (
   id: string,
 ): { article: Article | null; error: boolean; isLoading: boolean } => {
-  const { data: article, error, isLoading } = useSWR(`/article/${id}`, fetcher);
+  const {
+    data: article,
+    error,
+    isLoading,
+  } = useSWR(`/articles/${id}`, fetcher);
 
   if (!isArticle(article, error, isLoading)) {
     return { article: null, error: !!error, isLoading };
