@@ -6,7 +6,7 @@ type Props = {
 };
 
 const paragraphStyle = css`
-  margin: 5px;
+  margin-top: 5px;
 `;
 
 export const Paragraph = ({ paragraph }: Props): JSX.Element => (
