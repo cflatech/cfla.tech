@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { createHash } from "crypto";
 import { css } from "@emotion/react";
 import { styles } from "../../../../styles/styles";
+import { Article } from "../../../../types/article";
+import { Block } from "../../../Block";
 
 const itemStyle = css`
   border-radius: 15px;
@@ -48,10 +51,7 @@ const readMore = css`
 `;
 
 type Props = {
-  item: {
-    id: string;
-    title: string;
-  };
+  item: Article;
 };
 
 // TODO: 後でコンポーネント分ける
@@ -63,21 +63,16 @@ export const Item = ({ item }: Props): JSX.Element => (
         <div css={titleText}>{item.title}</div>
       </div>
       <div>
-        <time css={time}>2022-01-01</time>
+        <time css={time}>{item.date}</time>
       </div>
     </div>
     <div css={article}>
-      なんか文章
-      <br />
-      なんか文章
-      <br />
-      なんか文章
-      <br />
-      なんか文章
-      <br />
-      なんか文章
-      <br />
-      とってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとってもとっても長い文章
+      {item.blocks.slice(0, 3).map((block) => (
+        <Block
+          key={createHash("sha256").update(block.text).digest("hex")}
+          block={block}
+        />
+      ))}
     </div>
     <Link css={readMore} href="/">
       続きを読む
