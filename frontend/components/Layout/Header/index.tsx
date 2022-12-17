@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import Link from "next/link";
 import { styles } from "../../../styles/styles";
 import Logo from "../../../icons/cflatech.svg";
 
@@ -23,9 +24,11 @@ export default function Header(): JSX.Element {
   return (
     <header css={header}>
       <div css={headerContent}>
-        <div css={logo}>
-          <Logo />
-        </div>
+        <Link href="/">
+          <div css={logo}>
+            <Logo />
+          </div>
+        </Link>
       </div>
     </header>
   );
