@@ -1,0 +1,23 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./deploy/nginx/Dockerfile
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./deploy/frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_URL: http://api.cfla.tech
+    env_file: .env.frontend
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./deploy/backend/Dockerfile
+    env_file: .env.backend
