@@ -22,11 +22,16 @@ export type Header = {
 
 export type Paragraph = {
   type: "paragraph";
-  text: string;
+  items: (Link | Text)[];
 };
 
 export type Link = {
   type: "link";
   text: string;
   link: string;
+};
+
+export type Text = {
+  type: "text";
+  text: string;
 };

@@ -44,7 +44,9 @@ export const List = ({ page }: Props): JSX.Element | null => {
           <Title article={item} />
           {item.blocks.slice(0, 3).map((block) => (
             <Block
-              key={createHash("sha256").update(block.text).digest("hex")}
+              key={createHash("sha256")
+                .update(JSON.stringify(block))
+                .digest("hex")}
               block={block}
             />
           ))}

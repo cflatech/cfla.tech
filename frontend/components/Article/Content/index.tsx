@@ -41,7 +41,7 @@ export const Article = ({ id }: Props): JSX.Element | null => {
       <Title article={article} />
       {article.blocks.map((block) => (
         <Block
-          key={createHash("sha256").update(block.text).digest("hex")}
+          key={createHash("sha256").update(JSON.stringify(block)).digest("hex")}
           block={block}
         />
       ))}
