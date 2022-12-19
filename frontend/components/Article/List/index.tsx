@@ -1,4 +1,6 @@
 import { createHash } from "crypto";
+import { css } from "@emotion/react";
+import { RotatingLines } from "react-loader-spinner";
 import { Item } from "../Item";
 import { useArticleItems } from "../../../hooks/useArticleItems";
 import { Block } from "../Block";
@@ -9,11 +11,31 @@ type Props = {
   page: number;
 };
 
+const loading = css`
+  display: flex;
+  justify-content: center;
+`;
+
 export const List = ({ page }: Props): JSX.Element | null => {
   const { items, isLoading } = useArticleItems(Number(page));
 
-  if (isLoading) return null;
-  if (items.length === 0) return null;
+  if (isLoading || items.length === 0) {
+    return (
+      <div>
+        <Item>
+          <div css={loading}>
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="2"
+              width="96"
+              visible
+            />
+          </div>
+        </Item>
+      </div>
+    );
+  }
 
   return (
     <div data-testid="list">
