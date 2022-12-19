@@ -1,4 +1,4 @@
-import { BlockInterface } from "../block-content.interface";
+import { BlockInterface } from "../block.interface";
 
 export class Header implements BlockInterface {
   readonly type = "header";

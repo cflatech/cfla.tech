@@ -1,10 +1,9 @@
 import { css } from "@emotion/react";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import { List } from "../components/Article/List";
-import { Pagination } from "../components/Article/List/Pagination";
-import { Sidebar } from "../components/Sidebar";
-import { styles } from "../styles/styles";
+import { Article } from "../../components/Article/Content";
+import { Sidebar } from "../../components/Sidebar";
+import { styles } from "../../styles/styles";
 
 const content = css`
   display: flex;
@@ -40,11 +39,11 @@ const aside = css`
 `;
 
 type Props = {
-  page: number;
+  id: string;
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const Home = ({ page }: Props) => (
+const Home = ({ id }: Props) => (
   <>
     <Head>
       <title>CFLA.TECH</title>
@@ -54,8 +53,7 @@ const Home = ({ page }: Props) => (
     </Head>
     <div css={content}>
       <main css={main}>
-        <List page={page} />
-        <Pagination page={page} />
+        <Article id={id} />
       </main>
       <aside css={aside}>
         <Sidebar />
@@ -65,9 +63,16 @@ const Home = ({ page }: Props) => (
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const page = Number(context.query.page ?? 1);
+  const { id } = context.query;
+
+  if (typeof id !== "string") {
+    return {
+      notFound: true,
+    };
+  }
+
   const props: Props = {
-    page,
+    id,
   };
 
   return {

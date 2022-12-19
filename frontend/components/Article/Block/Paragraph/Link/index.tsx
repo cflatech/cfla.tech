@@ -1,4 +1,4 @@
-import { Link as LinkType } from "../../../types/article";
+import { Link as LinkType } from "../../../../../types/article";
 
 type Props = {
   link: LinkType;

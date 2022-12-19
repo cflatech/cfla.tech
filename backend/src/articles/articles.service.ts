@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import {
-  ArticlesRepositoryInterface,
-  ArticlesRepositoryInterfaceToken,
+  ArticleRepositoryInterface,
+  ArticleRepositoryInterfaceToken,
 } from "./models/article.repositry.interface";
 import { Id } from "./models/id/id.value-object";
 
@@ -9,11 +9,11 @@ import { Id } from "./models/id/id.value-object";
 export class ArticlesService {
   #perPage = 3;
 
-  #articleRepository: ArticlesRepositoryInterface;
+  #articleRepository: ArticleRepositoryInterface;
 
   constructor(
-    @Inject(ArticlesRepositoryInterfaceToken)
-    articleRepository: ArticlesRepositoryInterface,
+    @Inject(ArticleRepositoryInterfaceToken)
+    articleRepository: ArticleRepositoryInterface,
   ) {
     this.#articleRepository = articleRepository;
   }

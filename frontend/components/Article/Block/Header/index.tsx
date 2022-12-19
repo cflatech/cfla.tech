@@ -1,4 +1,4 @@
-import { Header as HeaderType } from "../../../types/article";
+import { Header as HeaderType } from "../../../../types/article";
 
 type Props = {
   header: HeaderType;

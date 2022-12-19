@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { ArticleBlock } from "../../types/article";
+import { ArticleBlock } from "../../../types/article";
 import { Code } from "./Code";
 import { Header } from "./Header";
-import { Link } from "./Link";
 import { Paragraph } from "./Paragraph";
 
 type Props = {
@@ -16,9 +15,6 @@ export const Block = ({ block }: Props): JSX.Element | null => {
     }
     case "header": {
       return <Header header={block} />;
-    }
-    case "link": {
-      return <Link link={block} />;
     }
     case "paragraph": {
       return <Paragraph paragraph={block} />;
