@@ -1,9 +1,10 @@
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { BlockInterface } from "../../models/block/block-content.interface";
+import { BlockInterface } from "../../models/block/block.interface";
 import { Code } from "../../models/block/code/code.value-object";
 import { Header } from "../../models/block/header/header.value-objcet";
 import { Link } from "../../models/block/paragraph/link/link.value-object";
 import { Paragraph } from "../../models/block/paragraph/paragraph.value-object";
+import { Text } from "../../models/block/paragraph/text/text.value-object";
 
 export function parseBlockResponse(
   blockResponse: BlockObjectResponse,
@@ -12,13 +13,15 @@ export function parseBlockResponse(
 
   switch (blockResponse.type) {
     case "paragraph": {
-      blockResponse.paragraph.rich_text.forEach((paragraph) => {
-        if (paragraph.href === null) {
-          blocks.push(new Paragraph(paragraph.plain_text));
+      const paragraph = new Paragraph();
+      blockResponse.paragraph.rich_text.forEach((item) => {
+        if (item.href === null) {
+          paragraph.addItem(new Text(item.plain_text));
         } else {
-          blocks.push(new Link(paragraph.plain_text, paragraph.href));
+          paragraph.addItem(new Link(item.plain_text, item.href));
         }
       });
+      blocks.push(paragraph);
       break;
     }
     case "heading_1": {

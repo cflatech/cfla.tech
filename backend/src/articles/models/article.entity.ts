@@ -1,4 +1,4 @@
-import { BlockInterface } from "./block/block-content.interface";
+import { BlockInterface } from "./block/block.interface";
 import { Id } from "./id/id.value-object";
 
 export class Article {

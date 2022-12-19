@@ -3,6 +3,9 @@ import {
   CodeBlockObjectResponse,
   ParagraphBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
+import { Link } from "../../models/block/paragraph/link/link.value-object";
+import { Paragraph } from "../../models/block/paragraph/paragraph.value-object";
+import { Text } from "../../models/block/paragraph/text/text.value-object";
 import { parseBlockResponse } from "./notion-block.parser";
 
 describe("parseBlockResponse", () => {
@@ -180,6 +183,26 @@ describe("parseBlockResponse", () => {
 
     test("ParagraphのBlockが返る", () => {
       expect(parseBlockResponse(codeBlockResponse)[0].type).toBe("paragraph");
+    });
+
+    test("Paragprahにtextアイテムが追加される", () => {
+      const block = parseBlockResponse(codeBlockResponse)[0];
+      if (block.type !== "paragraph") {
+        expect(block.type).toBe("paragraph");
+      }
+
+      expect((block as Paragraph).items[0]).toEqual(new Text("これは"));
+    });
+
+    test("Paragprahにlinkアイテムが追加される", () => {
+      const block = parseBlockResponse(codeBlockResponse)[0];
+      if (block.type !== "paragraph") {
+        expect(block.type).toBe("paragraph");
+      }
+
+      expect((block as Paragraph).items[1]).toEqual(
+        new Link("Googleへのリンク", "http://google.co.jp"),
+      );
     });
   });
 });

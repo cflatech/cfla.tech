@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client";
 import { NotionConfigService } from "../../config/notion.config";
-import { InjectToken } from "../repositories/article.repository";
+import { InjectToken } from "../repositories/notion/article.repository";
 
 export const clientProvider = {
   provide: InjectToken.NOTION_CLIENT,
