@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: ./deploy/nginx/Dockerfile
+    volumes:
+      - acme:/etc/acme
     ports:
       - target: 80
         published: 80
@@ -21,3 +23,16 @@ services:
       context: .
       dockerfile: ./deploy/backend/Dockerfile
     env_file: .env.backend
+
+  lego:
+    build:
+      context: .
+      dockerfile: ./deploy/lego/Dockerfile
+    volumes:
+      - acme:/etc/acme
+    env_file: .env.lego
+    stdin_open: true
+    tty: true
+
+volumes:
+  acme:
