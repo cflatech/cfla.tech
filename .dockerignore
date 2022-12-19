@@ -1,0 +1,7 @@
+.github
+.git
+.devcontainer
+.husky
+.vscode
+*/node_modules
+*/.env*

@@ -1,0 +1,57 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./deploy/nginx/Dockerfile
+    volumes:
+      - acme:/etc/acme
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+
+  app_nginx:
+    build:
+      context: .
+      dockerfile: ./deploy/app_nginx/Dockerfile
+    volumes:
+      - acme:/etc/acme
+    ports:
+      - target: 443
+        published: 443
+        protocol: tcp
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./deploy/frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_URL: https://api.cfla.tech
+    env_file: .env.frontend
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./deploy/backend/Dockerfile
+    env_file: .env.backend
+
+  # TODO: runとrenew分ける？
+  # service_completed_successfully で app_nginxを立ち上げるようにする？
+  lego:
+    build:
+      context: .
+      dockerfile: ./deploy/lego/Dockerfile
+    volumes:
+      - acme:/etc/acme
+    environment:
+      FRONTEND_DOMAIN: www.cfla.tech
+      BACKEND_DOMAIN: api.cfla.tech
+    env_file: .env.lego
+    stdin_open: true
+    tty: true
+    # TODO: healthcheckさせる
+    depends_on:
+      - nginx
+
+volumes:
+  acme:
