@@ -1,7 +1,5 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { ArticlesModule } from "./articles/articles.module";
 import { CacheModule } from "./cache/cache.module";
 
@@ -14,7 +12,5 @@ import { CacheModule } from "./cache/cache.module";
     }),
     CacheModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
