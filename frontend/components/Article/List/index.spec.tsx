@@ -11,11 +11,10 @@ describe("List", () => {
           ({
             data: [
               {
-                id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
+                id: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573",
                 title: "4",
                 blocks: [],
                 date: "2022-12-15",
-                tag: [],
               },
             ],
             error: "error",
@@ -41,11 +40,10 @@ describe("List", () => {
           ({
             data: [
               {
-                id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
+                id: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573",
                 title: "4",
                 blocks: [],
                 date: "2022-12-15",
-                tag: [],
               },
             ],
             error: null,
@@ -71,11 +69,10 @@ describe("List", () => {
           ({
             data: [
               {
-                id: { value: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573" },
+                id: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573",
                 title: "4",
                 blocks: [],
                 date: "2022-12-15",
-                tag: [],
               },
             ],
             error: null,
