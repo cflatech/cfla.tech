@@ -1,9 +1,9 @@
 import { Article } from "./article.entity";
 import { Id } from "./id/id.value-object";
 
-export type ArticlesRepositoryInterface = {
+export type ArticleRepositoryInterface = {
   find(id: Id): Promise<Article | null>;
   getPublished(): Promise<Article[]>;
 };
 
-export const ArticlesRepositoryInterfaceToken = "ArticlesRepositoryInterface";
+export const ArticleRepositoryInterfaceToken = "ArticleRepositoryInterface";

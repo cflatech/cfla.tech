@@ -3,7 +3,7 @@ import { Client, isFullPage } from "@notionhq/client";
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionConfigService } from "../../config/notion.config";
 import { Article } from "../models/article.entity";
-import { ArticlesRepositoryInterface } from "../models/article.repositry.interface";
+import { ArticleRepositoryInterface } from "../models/article.repositry.interface";
 import { BlockInterface } from "../models/block/block-content.interface";
 import { Code } from "../models/block/code/code.value-object";
 import { Header } from "../models/block/header/header.value-objcet";
@@ -16,7 +16,7 @@ export enum InjectToken {
 }
 
 @Injectable()
-export class ArticlesRepository implements ArticlesRepositoryInterface {
+export class ArticleRepository implements ArticleRepositoryInterface {
   #client: Client;
 
   #databaseId: string;

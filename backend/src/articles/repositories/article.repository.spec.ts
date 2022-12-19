@@ -5,13 +5,13 @@ import { NotionConfigService } from "../../config/notion.config";
 import { Paragraph } from "../models/block/paragraph/paragraph.value-object";
 import { Id } from "../models/id/id.value-object";
 import { clientProvider } from "../providers/client.provider";
-import { ArticlesRepository } from "./article.repository";
+import { ArticleRepository } from "./article.repository";
 
 // NOTE: API接続が発生するため必要がないならskipする
 // TODO: mockにするので気が向いたら
 describe.skip("find", () => {
   describe("記事IDが与えられた場合、", () => {
-    let repository: ArticlesRepository;
+    let repository: ArticleRepository;
 
     beforeEach(async () => {
       const module = await Test.createTestingModule({
@@ -20,10 +20,10 @@ describe.skip("find", () => {
             envFilePath: ".env.test.local",
           }),
         ],
-        providers: [ArticlesRepository, NotionConfigService, clientProvider],
+        providers: [ArticleRepository, NotionConfigService, clientProvider],
       }).compile();
 
-      repository = module.get<ArticlesRepository>(ArticlesRepository);
+      repository = module.get<ArticleRepository>(ArticleRepository);
     });
 
     it("該当する記事のタイトルが取得できる", async () => {
@@ -45,7 +45,7 @@ describe.skip("find", () => {
 });
 
 describe.skip("getPublic", () => {
-  let repository: ArticlesRepository;
+  let repository: ArticleRepository;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -54,10 +54,10 @@ describe.skip("getPublic", () => {
           envFilePath: ".env.test.local",
         }),
       ],
-      providers: [ArticlesRepository, NotionConfigService, clientProvider],
+      providers: [ArticleRepository, NotionConfigService, clientProvider],
     }).compile();
 
-    repository = module.get<ArticlesRepository>(ArticlesRepository);
+    repository = module.get<ArticleRepository>(ArticleRepository);
   });
 
   test("公開中の記事が取得できる", async () => {
