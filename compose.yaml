@@ -43,6 +43,9 @@ services:
       dockerfile: ./deploy/lego/Dockerfile
     volumes:
       - acme:/etc/acme
+    environment:
+      FRONTEND_DOMAIN: www.cfla.tech
+      BACKEND_DOMAIN: api.cfla.tech
     env_file: .env.lego
     stdin_open: true
     tty: true
