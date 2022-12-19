@@ -1,10 +1,10 @@
 import { ConfigModule } from "@nestjs/config";
 import { Test } from "@nestjs/testing";
 import { fail } from "assert";
-import { NotionConfigService } from "../../config/notion.config";
-import { Paragraph } from "../models/block/paragraph/paragraph.value-object";
-import { Id } from "../models/id/id.value-object";
-import { clientProvider } from "../providers/client.provider";
+import { NotionConfigService } from "../../../config/notion.config";
+import { Paragraph } from "../../models/block/paragraph/paragraph.value-object";
+import { Id } from "../../models/id/id.value-object";
+import { clientProvider } from "../../providers/client.provider";
 import { ArticleRepository } from "./article.repository";
 
 // NOTE: API接続が発生するため必要がないならskipする

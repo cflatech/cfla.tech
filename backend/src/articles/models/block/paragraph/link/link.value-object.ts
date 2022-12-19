@@ -1,4 +1,4 @@
-import { BlockInterface } from "../block-content.interface";
+import { BlockInterface } from "../../block-content.interface";
 
 export class Link implements BlockInterface {
   readonly type = "link";
