@@ -33,13 +33,13 @@ describe.skip("find", () => {
       expect(article?.title).toBe("タイトル");
     });
 
-    it("該当する記事の内容が取得できる", async () => {
+    it("該当する記事のパラグラフが取得できる", async () => {
       const id = new Id("8a314058-64c6-41e4-9c86-9b62548240cd");
       const article = await repository.find(id);
       if (!(article?.blocks[1] instanceof Paragraph)) {
         fail();
       }
-      expect(article.blocks[1].text).toBe("内容");
+      expect(article.blocks[1].type).toBe("paragraph");
     });
   });
 });

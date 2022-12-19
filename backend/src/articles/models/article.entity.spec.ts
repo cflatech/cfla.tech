@@ -30,7 +30,7 @@ describe("getter", () => {
     });
 
     test("記事内容がブロックごとに追加できる", () => {
-      const paragraph = new Paragraph("paragraph-content");
+      const paragraph = new Paragraph();
       const code = new Code("code-content", "typescript");
       article.addBlock(paragraph);
       article.addBlock(code);
