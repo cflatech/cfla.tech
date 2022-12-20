@@ -28,6 +28,7 @@ services:
       dockerfile: ./deploy/frontend/Dockerfile
       args:
         NEXT_PUBLIC_BACKEND_URL: https://api.cfla.tech
+        IMAGE_DOMAIN: https://image.cfla.tech
     env_file: .env.frontend
 
   backend:
