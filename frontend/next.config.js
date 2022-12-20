@@ -16,7 +16,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: process.env.IMAGE_DOMAIN.split(","),
+    domains: process.env.IMAGE_DOMAIN?.split(",") ?? [],
   },
 };
 
