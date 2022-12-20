@@ -16,6 +16,7 @@ services:
       dockerfile: ./deploy/app_nginx/Dockerfile
     volumes:
       - acme:/etc/acme
+      - ./images:/etc/images/webroot
     ports:
       - target: 443
         published: 443
