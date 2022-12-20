@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { useRef } from "react";
 import { Image as ImageType } from "../../../../types/article";
 
 type Props = {
@@ -8,6 +7,8 @@ type Props = {
 };
 
 const imageBlock = css`
+  display: flex;
+  justify-content: center;
   width: 100%;
 `;
 
