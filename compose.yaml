@@ -48,6 +48,7 @@ services:
     environment:
       FRONTEND_DOMAIN: www.cfla.tech
       BACKEND_DOMAIN: api.cfla.tech
+      IMAGE_DOMAIN: image.cfla.tech
     env_file: .env.lego
     stdin_open: true
     tty: true
