@@ -1,6 +1,7 @@
 FROM node:18-slim as build
 
 ARG NEXT_PUBLIC_BACKEND_URL
+ARG IMAGE_DOMAIN
 
 ENV NODE_ENV=production
 ENV NEXT_PUBLIC_BACKEND_URL $NEXT_PUBLIC_BACKEND_URL
@@ -30,6 +31,7 @@ RUN npm ci -w frontend --omit=dev
 
 COPY --from=build /usr/src/app/frontend/.next /usr/src/app/frontend/.next
 COPY ./frontend/public /usr/src/app/frontend/public
+COPY ./frontend/next.config.js ./frontend
 
 WORKDIR ./frontend
 
