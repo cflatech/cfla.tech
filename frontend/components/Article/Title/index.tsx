@@ -17,6 +17,7 @@ const square = css`
   display: inline-block;
   margin-right: 10px;
   vertical-align: -4px;
+  white-space: nowrap;
 `;
 
 const titleText = css`
@@ -34,8 +35,10 @@ type Props = {
 export const Title = ({ article }: Props): JSX.Element => (
   <div css={title}>
     <div>
-      <div css={square} />
-      <div css={titleText}>{article.title}</div>
+      <div css={titleText}>
+        <div css={square} />
+        {article.title}
+      </div>
     </div>
     <div>
       <time css={time}>{article.date}</time>
