@@ -7,7 +7,7 @@ export type Article = {
   blocks: ArticleBlock[];
 };
 
-export type ArticleBlock = Code | Header | Paragraph | Link;
+export type ArticleBlock = Code | Header | Paragraph | Link | Image;
 
 export type Code = {
   type: "code";
@@ -34,4 +34,9 @@ export type Link = {
 export type Text = {
   type: "text";
   text: string;
+};
+
+export type Image = {
+  type: "image";
+  url: string;
 };

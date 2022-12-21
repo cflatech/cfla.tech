@@ -10,6 +10,7 @@ echo lego \
   --email $EMAIL \
   --domains $FRONTEND_DOMAIN \
   --domains $BACKEND_DOMAIN \
+  --domains $IMAGE_DOMAIN \
   renew
 
 lego \
@@ -20,4 +21,5 @@ lego \
   --email $EMAIL \
   --domains $FRONTEND_DOMAIN \
   --domains $BACKEND_DOMAIN \
+  --domains $IMAGE_DOMAIN \
   renew

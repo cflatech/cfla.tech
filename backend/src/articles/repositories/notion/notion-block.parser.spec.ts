@@ -2,6 +2,7 @@ import {
   Heading1BlockObjectResponse,
   CodeBlockObjectResponse,
   ParagraphBlockObjectResponse,
+  ImageBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { Link } from "../../models/block/paragraph/link/link.value-object";
 import { Paragraph } from "../../models/block/paragraph/paragraph.value-object";
@@ -203,6 +204,39 @@ describe("parseBlockResponse", () => {
       expect((block as Paragraph).items[1]).toEqual(
         new Link("Googleへのリンク", "http://google.co.jp"),
       );
+    });
+  });
+
+  describe("External imageが与えられた場合、", () => {
+    const imageBlockResponse: ImageBlockObjectResponse = {
+      object: "block",
+      id: "af4cc789-b991-4620-827d-8b8d5eaf8305",
+      parent: {
+        type: "page_id",
+        page_id: "36c6fbf7-e0ce-410e-815f-ff92b2fb5573",
+      },
+      created_time: "2022-12-20T20:12:00.000Z",
+      last_edited_time: "2022-12-20T20:12:00.000Z",
+      created_by: {
+        object: "user",
+        id: "db98644d-8965-4b01-82f0-6c544a2e4cdf",
+      },
+      last_edited_by: {
+        object: "user",
+        id: "db98644d-8965-4b01-82f0-6c544a2e4cdf",
+      },
+      has_children: false,
+      archived: false,
+      type: "image",
+      image: {
+        caption: [],
+        type: "external",
+        external: { url: "https://placehold.jp/150x150.png" },
+      },
+    };
+
+    test("ImageのBlockが返る", () => {
+      expect(parseBlockResponse(imageBlockResponse)[0].type).toBe("image");
     });
   });
 });

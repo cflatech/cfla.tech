@@ -2,6 +2,7 @@
 import { ArticleBlock } from "../../../types/article";
 import { Code } from "./Code";
 import { Header } from "./Header";
+import { ImageBlock } from "./Image";
 import { Paragraph } from "./Paragraph";
 
 type Props = {
@@ -18,6 +19,10 @@ export const Block = ({ block }: Props): JSX.Element | null => {
     }
     case "paragraph": {
       return <Paragraph paragraph={block} />;
+    }
+    case "image": {
+      // eslint-disable-next-line jsx-a11y/alt-text
+      return <ImageBlock image={block} />;
     }
     default: {
       return null;

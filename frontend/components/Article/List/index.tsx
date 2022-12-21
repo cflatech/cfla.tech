@@ -28,7 +28,7 @@ export const List = ({ page }: Props): JSX.Element | null => {
               strokeColor="grey"
               strokeWidth="5"
               animationDuration="2"
-              width="96"
+              width="48"
               visible
             />
           </div>

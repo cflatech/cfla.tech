@@ -12,6 +12,7 @@ const content = css`
   @media (max-width: 900px) {
     flex-wrap: wrap;
   }
+  margin-bottom: 10px;
 `;
 
 const main = css`
