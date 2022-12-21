@@ -27,7 +27,8 @@
     "lint:prettier": "prettier --check .",
     "test": "run-s -c test:*",
     "test:backend": "npm test --workspace backend",
-    "test:frontend": "npm test --workspace frontend"
+    "test:frontend": "npm test --workspace frontend",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "workspaces": [
     "frontend",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "conventional-changelog-cli": "^2.2.2",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "prettier-package-json": "^2.7.0"
