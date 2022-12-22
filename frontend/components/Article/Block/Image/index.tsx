@@ -10,11 +10,18 @@ const imageBlock = css`
   display: flex;
   justify-content: center;
   width: 100%;
+  position: relative;
+  max-width: 100%;
+  height: 400px;
+`;
+
+const imageStyle = css`
+  object-fit: contain;
 `;
 
 // NOTE: Imageにlint効かせたいので命名妥協
 export const ImageBlock = ({ image }: Props): JSX.Element => (
   <div css={imageBlock}>
-    <Image src={`${image.url}`} width={600} height={600} alt="" />
+    <Image css={imageStyle} src={`${image.url}`} fill alt="" />
   </div>
 );
