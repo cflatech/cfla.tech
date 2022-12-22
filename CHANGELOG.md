@@ -1,3 +1,12 @@
+## [0.0.2](https://github.com/cflatech/cfla.tech/compare/0.0.1...0.0.2) (2022-12-22)
+
+
+### Bug Fixes
+
+* **frontend:** 画像のアスペクト比が固定になってたので修正 ([14f52b5](https://github.com/cflatech/cfla.tech/commit/14f52b5d92bab10775fa3e3a2617d6c7d1e1669d))
+
+
+
 ## 0.0.1 (2022-12-21)
 
 
