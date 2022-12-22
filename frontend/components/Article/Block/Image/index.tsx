@@ -12,7 +12,8 @@ const imageBlock = css`
   width: 100%;
   position: relative;
   max-width: 100%;
-  height: 400px;
+  height: 40vw;
+  max-height: 400px;
 `;
 
 const imageStyle = css`
