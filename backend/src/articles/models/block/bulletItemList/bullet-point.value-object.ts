@@ -1,15 +1,15 @@
-import { BulletPointItemInterface } from "./bullet-point-item.interface";
+import { ItemInterface } from "../item/item.interface";
 
 export class BulletPoint {
   readonly type = "bulletPoint";
 
-  readonly items: BulletPointItemInterface[];
+  readonly items: ItemInterface[];
 
   constructor() {
     this.items = [];
   }
 
-  addItem(item: BulletPointItemInterface) {
+  addItem(item: ItemInterface) {
     this.items.push(item);
   }
 }

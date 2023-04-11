@@ -1,6 +1,6 @@
-import { ParagraphItemInterface } from "../paragraph-item.interface";
+import { ItemInterface } from "../item.interface";
 
-export class Link implements ParagraphItemInterface {
+export class Link implements ItemInterface {
   readonly type = "link";
 
   readonly text: string;

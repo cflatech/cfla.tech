@@ -3,9 +3,9 @@ import { BlockInterface } from "../../models/block/block.interface";
 import { Code } from "../../models/block/code/code.value-object";
 import { Header } from "../../models/block/header/header.value-objcet";
 import { Image } from "../../models/block/image/image.value-object";
-import { Link } from "../../models/block/paragraph/link/link.value-object";
 import { Paragraph } from "../../models/block/paragraph/paragraph.value-object";
-import { Text } from "../../models/block/paragraph/text/text.value-object";
+import { Text } from "../../models/block/item/text/text.value-object";
+import { Link } from "../../models/block/item/link/link.value-object";
 
 export function parseBlockResponses(
   blockResponses: BlockObjectResponse[],

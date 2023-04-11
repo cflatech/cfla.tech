@@ -4,10 +4,10 @@ import {
   ParagraphBlockObjectResponse,
   ImageBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import { Link } from "../../models/block/paragraph/link/link.value-object";
 import { Paragraph } from "../../models/block/paragraph/paragraph.value-object";
-import { Text } from "../../models/block/paragraph/text/text.value-object";
 import { parseBlockResponses } from "./notion-blocks.parser";
+import { Link } from "../../models/block/item/link/link.value-object";
+import { Text } from "../../models/block/item/text/text.value-object";
 
 describe("parseBlockResponses", () => {
   describe("headerが与えられた場合、", () => {

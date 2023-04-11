@@ -1,16 +1,16 @@
 import { BlockInterface } from "../block.interface";
-import { ParagraphItemInterface } from "./paragraph-item.interface";
+import { ItemInterface } from "../item/item.interface";
 
 export class Paragraph implements BlockInterface {
   readonly type = "paragraph";
 
-  readonly items: ParagraphItemInterface[];
+  readonly items: ItemInterface[];
 
   constructor() {
     this.items = [];
   }
 
-  addItem(item: ParagraphItemInterface) {
+  addItem(item: ItemInterface) {
     this.items.push(item);
   }
 }
