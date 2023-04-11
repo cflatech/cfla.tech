@@ -1,10 +1,11 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Client, isFullPage } from "@notionhq/client";
+import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionConfigService } from "../../../config/notion.config";
 import { Article } from "../../models/article.entity";
 import { ArticleRepositoryInterface } from "../../models/article.repositry.interface";
 import { Id } from "../../models/id/id.value-object";
-import { parseBlockResponse } from "./notion-block.parser";
+import { parseBlockResponses } from "./notion-blocks.parser";
 
 export enum InjectToken {
   NOTION_CLIENT = "notion_client",
@@ -75,21 +76,25 @@ export class ArticleRepository implements ArticleRepositoryInterface {
             properties.Tag.multi_select.map((tag) => tag.name),
           );
 
-          const blocks = await this.#client.blocks.children.list({
+          const retrievedBlocks = await this.#client.blocks.children.list({
             block_id: result.id,
           });
-          blocks.results.forEach((block) => {
-            if (!("type" in block)) {
-              return;
-            }
-            if (block === null) {
-              return;
-            }
+          const blocks = retrievedBlocks.results.filter(
+            (block): block is BlockObjectResponse => {
+              if (!("type" in block)) {
+                return false;
+              }
+              if (block === null) {
+                return false;
+              }
 
-            parseBlockResponse(block).forEach((content) =>
-              article.addBlock(content),
-            );
-          });
+              return true;
+            },
+          );
+
+          parseBlockResponses(blocks).forEach((content) =>
+            article.addBlock(content),
+          );
 
           return article;
         }),
@@ -115,20 +120,24 @@ export class ArticleRepository implements ArticleRepositoryInterface {
 
     const article = new Article(id, title, "", []);
 
-    const blocks = await this.#client.blocks.children.list({
+    const retrievedBlocks = await this.#client.blocks.children.list({
       block_id: id.value,
     });
 
-    blocks.results.forEach((block) => {
-      if (!("type" in block)) {
-        return;
-      }
-      if (block === null) {
-        return;
-      }
+    const blocks = retrievedBlocks.results.filter(
+      (block): block is BlockObjectResponse => {
+        if (!("type" in block)) {
+          return false;
+        }
+        if (block === null) {
+          return false;
+        }
 
-      parseBlockResponse(block).forEach((content) => article.addBlock(content));
-    });
+        return true;
+      },
+    );
+
+    parseBlockResponses(blocks).forEach((content) => article.addBlock(content));
 
     return article;
   }
