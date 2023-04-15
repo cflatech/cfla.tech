@@ -5,7 +5,10 @@ export class Text implements ItemInterface {
 
   readonly text: string;
 
-  constructor(text: string) {
+  readonly isCode: boolean;
+
+  constructor(text: string, isCode = false) {
     this.text = text;
+    this.isCode = isCode;
   }
 }
