@@ -1,8 +1,7 @@
-import { BlockInterface } from "../block.interface";
 import { ItemInterface } from "../item/item.interface";
 
-export class Paragraph implements BlockInterface {
-  readonly type = "paragraph";
+export class BulletPoint {
+  readonly type = "bulletPoint";
 
   readonly items: ItemInterface[];
 
