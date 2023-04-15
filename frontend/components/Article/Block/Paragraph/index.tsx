@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import { createHash } from "crypto";
 import { Paragraph as ParagraphType } from "../../../../types/article";
-import { Link } from "./Link";
-import { Text } from "./Text";
+import { Item } from "../Item/item";
 
 type Props = {
   paragraph: ParagraphType;
@@ -9,10 +8,11 @@ type Props = {
 
 export const Paragraph = ({ paragraph }: Props): JSX.Element => (
   <p>
-    {paragraph.items.map((item) => {
-      if (item.type === "text") return <Text text={item} />;
-      if (item.type === "link") return <Link link={item} />;
-      return null;
-    })}
+    {paragraph.items.map((item) => (
+      <Item
+        key={createHash("sha256").update(JSON.stringify(item)).digest("hex")}
+        item={item}
+      />
+    ))}
   </p>
 );

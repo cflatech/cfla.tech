@@ -7,7 +7,13 @@ export type Article = {
   blocks: ArticleBlock[];
 };
 
-export type ArticleBlock = Code | Header | Paragraph | Link | Image;
+export type ArticleBlock =
+  | Code
+  | Header
+  | Paragraph
+  | Link
+  | Image
+  | BulletPointList;
 
 export type Code = {
   type: "code";
@@ -22,7 +28,7 @@ export type Header = {
 
 export type Paragraph = {
   type: "paragraph";
-  items: (Link | Text)[];
+  items: Item[];
 };
 
 export type Link = {
@@ -31,9 +37,22 @@ export type Link = {
   link: string;
 };
 
+export type BulletPointList = {
+  type: "bulletPointList";
+  items: BulletPoint[];
+};
+
+export type BulletPoint = {
+  type: "bulletPoint";
+  items: Item[];
+};
+
+export type Item = Text | Link;
+
 export type Text = {
   type: "text";
   text: string;
+  isCode: boolean;
 };
 
 export type Image = {
