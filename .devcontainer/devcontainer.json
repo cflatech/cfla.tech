@@ -1,17 +1,20 @@
 {
   "name": "dev",
-  "dockerComposeFile": ["compose.yml"],
+  "dockerComposeFile": [
+    "compose.yml"
+  ],
   "service": "dev",
   "remoteUser": "devuser",
-  "updateRemoteUserUID": true,
   "workspaceFolder": "/workspace",
   "remoteEnv": {
-    "EDITOR": "code --wait",
+    "EDITOR": "code --wait"
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "exiasr.hadolint"
+        "exiasr.hadolint",
+        "ms-azuretools.vscode-docker",
+        "vivaxy.vscode-conventional-commits"
       ]
     }
   }
