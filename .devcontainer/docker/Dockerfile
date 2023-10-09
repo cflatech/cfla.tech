@@ -30,7 +30,7 @@ RUN \
   apt-get install --no-install-recommends -y \
   ca-certificates=20230311 \
   git=1:2.39.2-1.1 \
-  openssh-client=1:9.4p1-1 \
+  openssh-client=1:9.2p1-2+deb12u1 \
   curl=7.88.1-10+deb12u3 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* 
