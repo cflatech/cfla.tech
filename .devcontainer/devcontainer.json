@@ -14,7 +14,8 @@
         "ms-azuretools.vscode-docker",
         "vivaxy.vscode-conventional-commits",
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens"
       ]
     }
   }
