@@ -1,3 +1,24 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": ".",
+    "sourceType": "module"
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "react/function-component-definition": "off"
+  }
 }
