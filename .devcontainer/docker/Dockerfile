@@ -80,9 +80,13 @@ RUN \
   apt-get upgrade -y && \
   apt-get install --no-install-recommends -y \
   neovim=0.7.2-7 \
-  unzip=6.0-28 && \
+  unzip=6.0-28 \
+  less=590-2 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
+  # install delta
+  curl -L 'https://github.com/dandavison/delta/releases/download/0.16.5/delta-0.16.5-x86_64-unknown-linux-musl.tar.gz' | tar xz -C /tmp && \
+  mv /tmp/delta-0.16.5-x86_64-unknown-linux-musl/delta /usr/local/bin && \
   # install skim
   curl -L 'https://github.com/lotabout/skim/releases/download/v0.9.4/skim-v0.9.4-x86_64-unknown-linux-musl.tar.gz' | tar xz -C /tmp && \
   mv /tmp/sk /usr/local/bin && \
