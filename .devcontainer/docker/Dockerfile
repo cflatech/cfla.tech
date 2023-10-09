@@ -1,5 +1,8 @@
 FROM debian:bookworm-slim
 
+ENV LANG "C.UTF-8"
+ENV LC_ALL "en_US.UTF-8"
+
 ARG USERNAME=devuser
 ARG GROUPNAME=devusers
 

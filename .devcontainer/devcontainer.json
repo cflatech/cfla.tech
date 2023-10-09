@@ -1,8 +1,6 @@
 {
   "name": "dev",
-  "dockerComposeFile": [
-    "compose.yml"
-  ],
+  "dockerComposeFile": ["compose.yml"],
   "service": "dev",
   "remoteUser": "devuser",
   "workspaceFolder": "/workspace",
@@ -14,7 +12,9 @@
       "extensions": [
         "exiasr.hadolint",
         "ms-azuretools.vscode-docker",
-        "vivaxy.vscode-conventional-commits"
+        "vivaxy.vscode-conventional-commits",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
       ]
     }
   }

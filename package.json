@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "cfla.tech",
+  "version": "0.0.2",
+  "description": "cfla.tech website",
+  "license": "UNLICENSED",
+  "author": "CFLAT",
+  "homepage": "https://github.com/cflatech/cfla.tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cflatech/cfla.tech.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cflatech/cfla.tech/issues"
+  },
+  "scripts": {
+    "format": "run-s -c format:*",
+    "format:package-json": "prettier-package-json --success --write {.,./backend}/package.json",
+    "format:prettier": "prettier --write .",
+    "postinstall": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
+    "lint": "run-s -c lint:*",
+    "lint:package-json": "prettier-package-json --success --list-different {.,./backend}/package.json",
+    "lint:prettier": "prettier --check ."
+  },
+  "dependencies": {
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
+    "prettier": "^3.0.3"
+  }
+}
