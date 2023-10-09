@@ -1,3 +1,9 @@
+import Logo from "./cflatech.svg";
+
 export default function Header(): JSX.Element {
-  return <div />;
+  return (
+    <header>
+      <Logo />
+    </header>
+  );
 }

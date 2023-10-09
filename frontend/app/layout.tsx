@@ -1,5 +1,6 @@
-import "./globals.css";
 import type { Metadata } from "next";
+import Header from "../components/modules/layouts/header";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "cfla.tech",
@@ -12,8 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="ja-jp">
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
