@@ -21,8 +21,29 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USERNAME}
 
+RUN \
+  apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get install --no-install-recommends -y \
+  ca-certificates=20230311 \
+  git=1:2.39.2-1.1 \
+  curl=7.88.1-10+deb12u3 && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* 
+
+# Install ASDF
+ARG ASDF_VERSION=0.13.1
+RUN \
+  gosu ${USERNAME} fish -c " \
+  git clone https://github.com/asdf-vm/asdf.git /home/${USERNAME}/.asdf --branch v${ASDF_VERSION} && \
+  mkdir -p /home/${USERNAME}/.config/fish/completions && \
+  ln -s /home/${USERNAME}/.asdf/completions/asdf.fish /home/${USERNAME}/.config/fish/completions && \
+  mkdir -p /home/${USERNAME}/.config/fish/conf.d && \
+  echo 'source ~/.asdf/asdf.fish' > /home/${USERNAME}/.config/fish/conf.d/asdf.fish \
+  "
+
 # Node.js
-ARG NODE_VERSION=20.0.8
+ARG NODE_VERSION=20.8.0
 RUN \
   apt-get update -y && \
   apt-get upgrade -y && \
@@ -33,19 +54,9 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   gosu ${USERNAME} fish -c " \
   asdf plugin add nodejs && \
-  asdf install nodejs ${NODE_VERSION}} && \
+  asdf install nodejs ${NODE_VERSION} && \
   asdf global nodejs ${NODE_VERSION} \
   "
-
-RUN \
-  apt-get update -y && \
-  apt-get upgrade -y && \
-  apt-get install --no-install-recommends -y \
-  ca-certificates=20230311 \
-  git=1:2.39.2-1.1 \
-  curl=7.88.1-10+deb12u3 && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* 
 
 RUN \
   apt-get update -y && \
