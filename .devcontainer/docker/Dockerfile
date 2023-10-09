@@ -3,6 +3,8 @@ FROM debian:bookworm-slim
 ARG USERNAME=devuser
 ARG GROUPNAME=devusers
 
+# https://github.com/hadolint/hadolint/wiki/DL4006
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
   groupadd ${GROUPNAME} && \
   useradd -g ${GROUPNAME} --shell /usr/bin/fish -m ${USERNAME}
@@ -46,9 +48,21 @@ RUN \
   rm -rf /var/lib/apt/lists/* 
 
 RUN \
+  apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get install --no-install-recommends -y \
+  neovim=0.7.2-7 \
+  unzip=6.0-28 && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  # install skim
+  curl -L 'https://github.com/lotabout/skim/releases/download/v0.9.4/skim-v0.9.4-x86_64-unknown-linux-musl.tar.gz' | tar xz -C /tmp && \
+  mv /tmp/sk /usr/local/bin && \
+  # install hadolint
   curl -L https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 -o /usr/local/bin/hadolint && \
   chmod 755 /usr/local/bin/hadolint
 
+COPY ./.devcontainer/docker/config/ /home/${USERNAME}/.config
 RUN chown ${USERNAME}:${GROUPNAME} -R /home/${USERNAME}
 
 WORKDIR /workspace
