@@ -1,10 +1,22 @@
 FROM debian:bookworm-slim
 
-ENV LANG "C.UTF-8"
-ENV LC_ALL "en_US.UTF-8"
-
 ARG USERNAME=devuser
 ARG GROUPNAME=devusers
+
+# locale setting
+# slim imageにデフォルトでUTF-8のファイル入ってない
+RUN \
+  apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get install --no-install-recommends -y \
+  locales=2.36-9+deb12u3 && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  localedef -f UTF-8 -i en_US en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # https://github.com/hadolint/hadolint/wiki/DL4006
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
