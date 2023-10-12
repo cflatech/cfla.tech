@@ -14,7 +14,7 @@
     "prettier",
     "plugin:@typescript-eslint/recommended"
   ],
-  "ignorePatterns": ["next.config.js"],
+  "ignorePatterns": ["next.config.js", "prettier.config.js", "tailwind.config.js"],
   "plugins": ["@typescript-eslint/eslint-plugin"],
   "rules": {
     "import/prefer-default-export": "off",
