@@ -1,14 +1,15 @@
 {
+  "private": true,
   "name": "frontend",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "format": "run-s -c format:*",
+    "format:package-json": "prettier-package-json --success --write {.,./backend}/package.json",
+    "format:prettier": "prettier --write .",
     "lint": "next lint",
-    "lint:package-json": "prettier-package-json --success --list-different {.,./backend}/package.json",
-    "lint:prettier": "prettier --check ."
+    "start": "next start"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
