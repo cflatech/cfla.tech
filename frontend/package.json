@@ -9,7 +9,8 @@
     "format:package-json": "prettier-package-json --success --write {.,./backend}/package.json",
     "format:prettier": "prettier --write .",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "license:generate": "license-checker --production --json > ./licenses.json"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
@@ -33,6 +34,7 @@
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^9.0.0",
     "jest": "^29.7.0",
+    "license-checker": "^25.0.1",
     "postcss": "^8",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.5",
