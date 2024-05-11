@@ -1,8 +1,0 @@
-services:
-  dev:
-    build:
-      context: ..
-      dockerfile: ./.devcontainer/docker/Dockerfile
-    volumes:
-      - ..:/workspace
-    tty: true
