@@ -12,7 +12,7 @@ export default function Header(): JSX.Element {
         </div> */}
         <div className="px-3 py-3">
           <Link href="/">
-            <Logo />
+            <Logo alt="cfla.tech" />
           </Link>
         </div>
       </div>
