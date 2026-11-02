@@ -1,0 +1,27 @@
+services:
+  front:
+    build:
+      context: .
+      dockerfile: ./deploy/front/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - acme:/etc/acme
+
+  lego:
+    build:
+      context: .
+      dockerfile: ./deploy/lego/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - acme:/etc/acme
+    environment:
+      FRONTEND_DOMAIN: www.cfla.tech
+    env_file:
+      - .env.lego
+    depends_on:
+      - front
+
+volumes:
+  acme:

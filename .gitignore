@@ -1,4 +1,1 @@
-/node_modules
-/tmp
-/images/*
-.env.*
+.env.lego

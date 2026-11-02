@@ -1,1 +1,1 @@
-0 0 * * * root sh /go/lego_renew.sh
+0 0 * * * root /go/lego_renew.sh >> /var/log/lego.log 2>&1

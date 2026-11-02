@@ -1,25 +1,13 @@
-#!/bin/bash
-mkdir -p /etc/acme/data
-mkdir -p /etc/acme/webroot
+#!/usr/bin/env bash
+set -eu
 
-echo lego \
-  --path /etc/acme/data \
-  --accept-tos \
-  --http \
-  --http.webroot /etc/acme/webroot \
-  --email $EMAIL \
-  --domains $FRONTEND_DOMAIN \
-  --domains $BACKEND_DOMAIN \
-  --domains $IMAGE_DOMAIN \
-  run
+mkdir -p /etc/acme/data /etc/acme/webroot
 
 lego \
   --path /etc/acme/data \
   --accept-tos \
   --http \
   --http.webroot /etc/acme/webroot \
-  --email $EMAIL \
-  --domains $FRONTEND_DOMAIN \
-  --domains $BACKEND_DOMAIN \
-  --domains $IMAGE_DOMAIN \
+  --email "$EMAIL" \
+  --domains "$FRONTEND_DOMAIN" \
   run
