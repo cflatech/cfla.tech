@@ -8,9 +8,11 @@ RUN apt-get update \
 COPY ./deploy/lego/lego_run.sh /go/lego_run.sh
 COPY ./deploy/lego/lego_renew.sh /go/lego_renew.sh
 COPY ./deploy/lego/cron /etc/cron.d/lego
+COPY ./deploy/lego/entrypoint.sh /go/entrypoint.sh
 
 RUN chmod 0644 /etc/cron.d/lego \
-    && chmod 0755 /go/lego_run.sh /go/lego_renew.sh \
+    && chmod 0755 /go/lego_run.sh /go/lego_renew.sh /go/entrypoint.sh \
     && mkdir -p /etc/acme/data /etc/acme/webroot
 
+ENTRYPOINT ["/go/entrypoint.sh"]
 CMD ["cron", "-f"]

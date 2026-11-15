@@ -1,14 +1,29 @@
 services:
-  front:
+  proxy:
     build:
       context: .
-      dockerfile: ./deploy/front/Dockerfile
+      dockerfile: ./deploy/proxy/Dockerfile
     restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - acme:/etc/acme
+    depends_on:
+      - front
+      - app
+
+  front:
+    build:
+      context: .
+      dockerfile: ./deploy/front/Dockerfile
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: ./deploy/app/Dockerfile
+    restart: unless-stopped
 
   lego:
     build:
@@ -22,7 +37,21 @@ services:
     env_file:
       - .env.lego
     depends_on:
-      - front
+      - proxy
+
+  lego-app:
+    build:
+      context: .
+      dockerfile: ./deploy/lego/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - acme:/etc/acme
+    environment:
+      FRONTEND_DOMAIN: app.cfla.tech
+    env_file:
+      - .env.lego
+    depends_on:
+      - proxy
 
 volumes:
   acme:
