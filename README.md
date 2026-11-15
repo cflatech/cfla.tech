@@ -48,3 +48,21 @@ docker compose up -d proxy
 docker compose run --rm lego-app /go/lego_run.sh # app の証明書が未取得の場合
 docker compose up -d lego lego-app
 ```
+
+## 証明書取得時に HTTP-01 認証が 403 になる場合
+
+旧版の Lego 起動スクリプトは `umask 077` を証明書取得処理にも引き継ぐため、
+認証ファイルを Nginx が読めず、認証に失敗します。
+修正版はメール設定ファイルを保護したまま、認証ファイルを読み取り可能な権限で作成し、
+共有ボリュームに残っている認証用ディレクトリの権限も補正します。
+
+最新のソースを反映後、イメージを再ビルドして証明書を取得し直してください。
+
+```sh
+docker compose build lego lego-app
+docker compose run --rm lego-app /go/lego_run.sh
+docker compose up -d lego lego-app
+```
+
+`www.cfla.tech` の証明書取得も失敗している場合は、`lego` でも `/go/lego_run.sh` を実行します。
+取得した証明書は `proxy` が通常 30 秒以内に検知して再読み込みします。
