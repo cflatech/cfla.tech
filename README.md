@@ -81,22 +81,6 @@ docker compose run --rm lego /go/lego_run.sh
 docker compose up -d lego cloudflared
 ```
 
-## 既存の公開 proxy 構成から移行
-
-環境設定と Cloudflare 側の設定を完了後、次を実行します。
-`--remove-orphans` は旧 `lego-app` コンテナを削除します。取得済みの証明書を含む `acme` ボリュームは保持します。
-切り替え中はコンテナの再作成と DNS 反映に伴って、一時的に接続できなくなる場合があります。
-
-```sh
-docker compose pull cloudflared
-docker compose up -d --build --remove-orphans proxy app cloudflared lego
-```
-
-`docker compose logs --tail=50 cloudflared` と管理画面で Tunnel の接続を確認します。
-プライベートブラウズで `https://app.cfla.tech` にアクセスし、Cloudflare ログイン後に表示されること、
-許可していないユーザーが拒否されることを確認します。
-公開サーバーへの `app.cfla.tech` の直接 HTTP 接続は切断され、HTTPS 接続は TLS ハンドシェイクが拒否されます。
-
 ## コンテンツの更新
 
 コンテンツ変更後は対象のイメージを再ビルドします。
