@@ -2,7 +2,7 @@
 set -eu
 
 certificate_directory=/etc/acme/data/certificates
-domains="www.cfla.tech app.cfla.tech"
+domains="www.cfla.tech"
 
 mkdir -p "$certificate_directory" /etc/acme/webroot
 
