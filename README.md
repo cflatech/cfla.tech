@@ -15,6 +15,28 @@
 公開 `proxy` は `app` を含む `www` 以外のホスト名を拒否します。
 `app` の外部向け HTTPS 証明書は Cloudflare が管理するため、`lego-app` は使用しません。
 
+## front の開発（Astro）
+
+Node.js 24 LTS と npm を使用します。
+
+```sh
+cd front
+npm ci
+npm run dev
+```
+
+開発サーバーは `http://localhost:4321` で起動します。
+ページは `front/src/pages/` に配置します。
+
+```sh
+npm run build
+npm run preview
+```
+
+`npm run build` で静的サイトを `front/dist/` に生成し、
+`npm run preview` でビルド結果をローカル確認できます。
+本番用 Docker イメージはビルド時に Astro を実行し、生成物を Nginx で配信します。
+
 ## 環境設定
 
 ```sh
