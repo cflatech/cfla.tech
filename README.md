@@ -28,7 +28,8 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-front は `http://localhost:4321`、app は `http://localhost:3000` で起動します。
+既定の URL は front が `http://localhost:4321`、app が `http://localhost:3000` です。
+front の既定ポートが使用中の場合は、起動ログに表示されたポートを使います。
 ページはそれぞれ `apps/front/src/pages/` と `apps/app/src/routes/` に配置します。
 app の `/status` は Server Function で確認時刻を取得し、`/healthz` は Docker のヘルスチェックに使います。
 
@@ -47,14 +48,16 @@ pnpm build
 
 ### VPN 経由の開発
 
-VPN の別端末から確認するときは、開発サーバーを動かす端末で次を実行します。
+開発端末を VPN に接続してから、次を実行します。
 
 ```sh
 pnpm dev:vpn
 ```
 
-VPN に接続した端末から、front は `http://<開発端末のVPN IP>:4321`、app は `http://<開発端末のVPN IP>:3000` を開きます。
-`pnpm dev:vpn` はすべての IPv4 インターフェースで待ち受けるので、VPN の IP だけで待ち受けたい場合は `pnpm dev -- --host <開発端末のVPN IP>` を使います。
+`pnpm dev:vpn` は開発端末に割り当てられた `10.13.13.0/24` 内の IPv4 アドレスを探し、その IP だけで待ち受けます。
+VPN に接続した別端末から、起動ログに表示されたポートで開きます。既定では front が `4321`、app が `3000` です。
+該当する IP が複数ある場合は、`pnpm dev -- --host 10.13.13.12` のように実際の VPN IP を指定します。
+VPN 外からもこの IP に到達できる構成では、受信元を VPN の範囲に絞るためにホスト側のファイアウォールや VPN のアクセス制御を使ってください。
 
 ## 環境設定
 
