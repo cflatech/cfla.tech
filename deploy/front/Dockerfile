@@ -9,7 +9,7 @@ RUN pnpm --filter @cfla/front install --frozen-lockfile
 COPY apps/front/ apps/front/
 RUN pnpm --filter @cfla/front build
 
-FROM nginx:1.27-alpine
+FROM nginx:1.30.7-alpine
 
 COPY --from=build /app/apps/front/dist/ /usr/share/nginx/html/
 COPY ./deploy/front/nginx.conf /etc/nginx/conf.d/default.conf
