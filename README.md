@@ -4,8 +4,11 @@
 
 | URL | コンテンツ | 配信コンテナ |
 | --- | --- | --- |
-| `https://www.cfla.tech` | `front/` | `front`（`proxy` 経由） |
-| `https://app.cfla.tech` | `app/` | `app`（Cloudflare Access / Tunnel 経由） |
+| `https://www.cfla.tech` | `apps/front/`（Astro） | `front`（Nginx、`proxy` 経由） |
+| `https://app.cfla.tech` | `apps/app/`（TanStack Start） | `app`（Node.js、Cloudflare Access / Tunnel 経由） |
+
+pnpm workspace で依存関係と lockfile を管理し、Turborepo で両アプリのタスクを実行します。
+両方で使うコードが増えたら `packages/` に置き、`workspace:*` で参照できます。
 
 `proxy` が外部のポート 80 / 443 を受け持ち、`www` の HTTPS と HTTP からのリダイレクトを処理します。
 `lego` が `www` の証明書を取得・更新し、`proxy` が更新を検知して Nginx を再読み込みします。
@@ -14,6 +17,47 @@
 `cloudflared` は別のネットワークから Cloudflare へ接続し、`http://app:80` に転送します。
 公開 `proxy` は `app` を含む `www` 以外のホスト名を拒否します。
 `app` の外部向け HTTPS 証明書は Cloudflare が管理するため、`lego-app` は使用しません。
+
+## ローカル開発
+
+Node.js 24 LTS を使用します。Corepack を有効にすると、ルートの `package.json` で指定した pnpm が使われます。
+
+```sh
+corepack enable pnpm
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+既定の URL は front が `http://localhost:4321`、app が `http://localhost:3000` です。
+front の既定ポートが使用中の場合は、起動ログに表示されたポートを使います。
+ページはそれぞれ `apps/front/src/pages/` と `apps/app/src/routes/` に配置します。
+app の `/status` は Server Function で確認時刻を取得し、`/healthz` は Docker のヘルスチェックに使います。
+
+```sh
+pnpm --filter @cfla/front dev
+pnpm --filter @cfla/app dev
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
+`pnpm typecheck` は app のルート定義を生成するため、先に app をビルドします。
+`pnpm build` の成果物は front が `apps/front/dist/`、app が `apps/app/.output/` です。
+ビルド後は `pnpm --filter @cfla/front preview` と `pnpm --filter @cfla/app start` で確認できます。
+本番用 Docker イメージでは front の静的ファイルを Nginx で配信し、app のサーバーを Node.js で起動します。
+
+### VPN 経由の開発
+
+開発端末を VPN に接続してから、次を実行します。
+
+```sh
+pnpm dev:vpn
+```
+
+`pnpm dev:vpn` は開発端末に割り当てられた `10.13.13.0/24` 内の IPv4 アドレスを探し、その IP だけで待ち受けます。
+VPN に接続した別端末から、起動ログに表示されたポートで開きます。既定では front が `4321`、app が `3000` です。
+該当する IP が複数ある場合は、`pnpm dev -- --host 10.13.13.12` のように実際の VPN IP を指定します。
+VPN 外からもこの IP に到達できる構成では、受信元を VPN の範囲に絞るためにホスト側のファイアウォールや VPN のアクセス制御を使ってください。
 
 ## 環境設定
 
@@ -90,3 +134,8 @@ docker compose up -d --build app
 # front を変更した場合
 docker compose up -d --build front
 ```
+
+旧構成から移行するときも、Tunnel の転送先には `http://app:80` を使います。
+まず `docker compose build front app` で両方をビルドし、上記のコマンドでサービスごとに更新できます。
+更新後は `www.cfla.tech` と、Access にログインした状態で `app.cfla.tech` のトップページと `/status` を確認します。
+切り戻しには、更新前のイメージと、そのイメージに対応する Compose 設定を使います。

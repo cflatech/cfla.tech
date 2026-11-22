@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["VITE_*"],
+      "outputs": [".output/**", "src/routeTree.gen.ts"]
+    },
+    "typecheck": {
+      "dependsOn": ["build"]
+    }
+  }
+}

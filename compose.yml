@@ -23,6 +23,12 @@ services:
       context: .
       dockerfile: ./deploy/app/Dockerfile
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:' + process.env.PORT + '/healthz').then(response => { if (!response.ok) process.exit(1) }).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     networks:
       - app_internal
 
@@ -38,7 +44,8 @@ services:
       - app_internal
       - tunnel_egress
     depends_on:
-      - app
+      app:
+        condition: service_healthy
 
   lego:
     build:
