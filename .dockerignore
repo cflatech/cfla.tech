@@ -1,8 +1,11 @@
 .git
-.env.lego
-.env.cloudflared
+**/.env
+**/.env.*
 **/node_modules
 **/dist
 **/.astro
-front/.env
-front/.env.*
+**/.nitro
+**/.output
+**/.tanstack
+**/.turbo
+apps/app/src/routeTree.gen.ts

@@ -1,0 +1,23 @@
+{
+  "name": "cfla-tech",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:vpn": "turbo run dev -- --host 0.0.0.0",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "turbo": "^2.11.13",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.73.0"
+  }
+}
