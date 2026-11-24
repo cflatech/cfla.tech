@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@cfla/api-client": "workspace:*",
     "astro": "7.4.12"
   },
   "devDependencies": {

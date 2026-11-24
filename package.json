@@ -9,6 +9,7 @@
     "dev": "turbo run dev",
     "dev:vpn": "node scripts/dev-vpn.mjs",
     "build": "turbo run build",
+    "generate:api": "pnpm --filter @cfla/api generate",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck"
   },

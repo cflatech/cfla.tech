@@ -11,6 +11,10 @@ services:
       - acme:/etc/acme
     depends_on:
       - front
+      - api-public
+    networks:
+      - default
+      - api_public
 
   front:
     build:
@@ -23,6 +27,10 @@ services:
       context: .
       dockerfile: ./deploy/app/Dockerfile
     restart: unless-stopped
+    environment:
+      PRIVATE_API_URL: http://api-private:8788
+    depends_on:
+      - api-private
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:' + process.env.PORT + '/healthz').then(response => { if (!response.ok) process.exit(1) }).catch(() => process.exit(1))"]
       interval: 30s
@@ -31,6 +39,28 @@ services:
       start_period: 10s
     networks:
       - app_internal
+      - api_private
+
+  api-public:
+    build:
+      context: .
+      dockerfile: ./deploy/api/Dockerfile
+    restart: unless-stopped
+    networks:
+      - api_public
+
+  api-private:
+    build:
+      context: .
+      dockerfile: ./deploy/api/Dockerfile
+    restart: unless-stopped
+    command: ["node", "dist/private-server.js"]
+    env_file:
+      - path: .env.access
+        required: false
+    networks:
+      - api_private
+      - api_private_egress
 
   cloudflared:
     image: cloudflare/cloudflared:2026.11.0
@@ -65,6 +95,11 @@ volumes:
   acme:
 
 networks:
+  api_public:
+    internal: true
+  api_private:
+    internal: true
+  api_private_egress:
   app_internal:
     internal: true
   tunnel_egress:

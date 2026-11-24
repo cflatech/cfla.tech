@@ -1,0 +1,27 @@
+{
+  "name": "@cfla/api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": ["dist"],
+  "scripts": {
+    "dev": "node --watch src/dev.ts",
+    "build": "tsc",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.ts",
+    "generate": "node src/generate-openapi.ts && openapi-typescript openapi/public.json -o ../../packages/api-client/src/generated/public.d.ts && openapi-typescript openapi/private.json -o ../../packages/api-client/src/generated/private.d.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.11",
+    "@hono/zod-openapi": "^1.6.3",
+    "hono": "^4.13.20",
+    "jose": "^6.2.18",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "~5.9.3"
+  }
+}

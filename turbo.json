@@ -8,11 +8,14 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "passThroughEnv": ["ACCESS_TEAM_DOMAIN", "ACCESS_AUDIENCE", "PRIVATE_API_URL"]
     },
     "lint": {
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/eslint.config.mjs"]
     },
-    "typecheck": {}
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    }
   }
 }

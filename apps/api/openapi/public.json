@@ -1,0 +1,47 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "cfla.tech public API",
+    "version": "1.0.0"
+  },
+  "components": {
+    "schemas": {
+      "PublicSite": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "rebuilding",
+              "online"
+            ]
+          }
+        },
+        "required": [
+          "state"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/api/v1/public/site": {
+      "get": {
+        "operationId": "getPublicSite",
+        "responses": {
+          "200": {
+            "description": "Public site status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicSite"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}

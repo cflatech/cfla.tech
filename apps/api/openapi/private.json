@@ -1,0 +1,80 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "cfla.tech private API",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "cloudflareAccess": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Cf-Access-Jwt-Assertion"
+      }
+    },
+    "schemas": {
+      "PrivateStatus": {
+        "type": "object",
+        "properties": {
+          "checkedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "checkedAt"
+        ]
+      },
+      "AuthenticationError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHENTICATED"
+            ]
+          }
+        },
+        "required": [
+          "code"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/api/v1/status": {
+      "get": {
+        "operationId": "getPrivateStatus",
+        "security": [
+          {
+            "cloudflareAccess": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrivateStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid Cloudflare Access assertion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}

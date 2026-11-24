@@ -5,7 +5,9 @@ RUN corepack enable pnpm
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY apps/front/package.json apps/front/
 COPY apps/app/package.json apps/app/
-RUN pnpm --filter @cfla/app install --frozen-lockfile
+COPY packages/api-client/package.json packages/api-client/
+RUN pnpm --filter @cfla/app... install --frozen-lockfile
+COPY packages/api-client/ packages/api-client/
 COPY apps/app/ apps/app/
 RUN pnpm --filter @cfla/app build
 

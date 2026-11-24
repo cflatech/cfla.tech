@@ -6,6 +6,29 @@
     <title>cfla.tech</title>
   </head>
   <body>
-    再構築中
+    <p id="site-status">再構築中</p>
   </body>
 </html>
+
+<script>
+  import { createPublicApiClient } from '@cfla/api-client/public';
+
+  const siteStatus = document.querySelector('#site-status');
+
+  async function refreshSiteStatus(element: Element) {
+    try {
+      const { data } = await createPublicApiClient().GET('/api/v1/public/site', {
+        signal: AbortSignal.timeout(5000),
+      });
+      if (data) {
+        element.textContent = data.state === 'rebuilding' ? '再構築中' : '公開中';
+      }
+    } catch {
+      // Keep the static fallback if the public API is unavailable.
+    }
+  }
+
+  if (siteStatus) {
+    void refreshSiteStatus(siteStatus);
+  }
+</script>

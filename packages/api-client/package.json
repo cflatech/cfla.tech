@@ -1,0 +1,16 @@
+{
+  "name": "@cfla/api-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./public": "./src/public.ts",
+    "./private": "./src/private.ts"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
+  }
+}

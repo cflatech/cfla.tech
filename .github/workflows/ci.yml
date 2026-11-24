@@ -17,9 +17,14 @@ jobs:
           node-version: '24'
       - run: corepack enable pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm generate:api
+      - run: test -z "$(git status --porcelain --untracked-files=all -- apps/api/openapi packages/api-client/src/generated)"
+      - run: pnpm --filter @cfla/api test
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm build
       - run: docker compose config --no-env-resolution --quiet
+      - run: docker build -f deploy/api/Dockerfile .
       - run: docker build -f deploy/front/Dockerfile .
       - run: docker build -f deploy/app/Dockerfile .
+      - run: docker build -f deploy/proxy/Dockerfile .
